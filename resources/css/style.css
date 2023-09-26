@@ -1,3 +1,7 @@
+*{
+  box-sizing: border-box;
+}
+
 /* Navbar container */
 .navbar {
     overflow: hidden;
@@ -66,4 +70,7 @@
   /* Show the dropdown menu on hover */
   .dropdown:hover .dropdown-content {
     display: block;
+  }
+  .wrapper{
+    padding: 2.5vw;
   }

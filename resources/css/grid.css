@@ -1,0 +1,30 @@
+.grid{
+    column-gap: 1vw;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.inner-grid{
+    padding: 1.5vh;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: center;
+
+    column-gap: 1vw;
+}
+
+fieldset{
+    border: 0.25vh solid;
+    background-color: aliceblue;
+    border-radius: 0.75vw;
+    
+}
+
+.skillset-grid{
+    padding: 1.5vh;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: center;
+    column-gap: 1vw;
+    justify-items: center;
+}
