@@ -28,3 +28,12 @@ fieldset{
     column-gap: 1vw;
     justify-items: center;
 }
+
+.single-grid{
+    padding: 1.5vh;
+    display: grid;
+    grid-template-columns: repeat(0, minmax(0, 1fr));
+    align-items: center;
+    column-gap: 1vw;
+    justify-items: center;
+}
