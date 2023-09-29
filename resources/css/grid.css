@@ -1,4 +1,4 @@
-.grid{
+.triple-grid{
     column-gap: 1vw;
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -20,7 +20,7 @@ fieldset{
     
 }
 
-.skillset-grid{
+.double-grid{
     padding: 1.5vh;
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -36,4 +36,13 @@ fieldset{
     align-items: center;
     column-gap: 1vw;
     justify-items: center;
+}
+
+.grid-item img{
+    width: 50%;
+    height: 50%;
+    border-radius: 25%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }

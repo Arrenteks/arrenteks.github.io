@@ -128,3 +128,63 @@ body {
       left: 0%;
     }
   }
+
+  .inner-grid-item ul{
+    display: inline;
+  }
+
+  .inner-grid-item ul li{
+    list-style: none;
+    margin-top: 10vh;
+  }
+
+  .inner-grid-item ul a{
+    width: 120px;
+    height: 120px;
+    background-color: #fff;
+    text-align: center;
+    line-height: 120px;
+    font-size: 50px;
+    display: block;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+    border: 3px solid #fff;
+    z-index: 1;
+  }
+
+  .inner-grid-item ul li a .icon {
+    position: relative;
+    color: #262626;
+    transition: .5s;
+    z-index: 3;
+  }
+
+  .inner-grid-item ul li a:hover .icon {
+    color: #fff;
+    transform: rotateY(360deg);
+  }
+  
+  .inner-grid-item ul li a:before {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #f00;
+    transition: .5s;
+    z-index: 2;
+  }
+  
+  .inner-grid-item ul li a:hover:before {
+    top: 0;
+  }
+  
+  .inner-grid-item ul li:nth-child(1) a:before{
+    background: #0077b5;
+  }
+
+  .inner-grid-item ul li:nth-child(2) a:before{
+    background: #1e3050;
+  }
