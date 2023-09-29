@@ -188,3 +188,8 @@ body {
   .inner-grid-item ul li:nth-child(2) a:before{
     background: #1e3050;
   }
+
+  .grid-item img{
+    width: 50%;
+    height: 50%;
+}
