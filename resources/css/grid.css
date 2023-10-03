@@ -1,6 +1,6 @@
 .triple-grid{
     margin-top: 2vh;
-    column-gap: 1vw;
+    row-gap: 5vh;
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
 }
@@ -28,6 +28,10 @@ fieldset{
     align-items: center;
     column-gap: 1vw;
     justify-items: center;
+}
+
+.double-grid figcaption{
+    text-align: center;
 }
 
 .single-grid{
