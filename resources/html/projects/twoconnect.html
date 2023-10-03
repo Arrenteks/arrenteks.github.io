@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <header>
+            <div class="navbar">
+                <a href="/resources/html/about_me.html">About Me</a>
+                <a href="#news">News</a>
+                <div class="dropdown">
+                    <button class="dropbtn">Projects
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="/resources/html/game_development.html">Game Development</a>
+                        <a href="/resources/html/programming.html">Programming</a>
+                        <a href="/resources/html/game_design.html">Game Design</a>
+                        <a href="/resources/html/other.html">Other</a>
+                    </div><!--dropdown-content-->           
+                </div><!--dropdown-->
+            </div><!--navbar-->
+        </header>
+        <main>
+            <div class="wrapper">
+              <h1>[Ex]change Game Project</h1>
+              <fieldset>
+                <legend><h2>Project Status</h2></legend>
+                <div class="section">
+                    <p><b>Game Released: </b><a href="https://play.google.com/store/apps/details?id=de.TWOCGames.TwoConnect">Take a look</a></p>
+                  </div>
+              </fieldset><!--Project Status-->
+              <fieldset>
+                <legend><h2>Concept</h2></legend>
+                <div class="section">
+                    <p>Two Connect is a game for Android mobile phones 
+                        developed in the Unity Game Engine. It is a
+                        puzzle game in which you solve puzzles with the
+                        magnetic powers of two sentient monopoles.</p>
+                  </div>
+              </fieldset><!--Concept-->
+              <fieldset>
+                <legend><h2>Logline</h2></legend>
+                <div class="section">
+                    <p>Harnass the power of magnets and help the two 
+                        monopole sisters Joy and Lucy reach the end 
+                        of puzzling levels</p>
+                  </div>
+              </fieldset><!--Logline-->
+              <fieldset>
+                <legend><h2>Gameplay</h2></legend>
+                <div class="section">
+                    <p>Tap and hold the screen to move the character. 
+                        Switch between the two sisters to solve puzzles</p>
+                  </div>
+              </fieldset><!--Gameplay-->
+              <fieldset>
+                <legend><h2>Contribution</h2></legend>
+                <div class="section">
+                    <p>Over the course of the project my workload and 
+                        responsibilities kept increasing. At first only
+                        a programmer I soon became the project manager for 
+                        the technical parts of the project.
+                        I setup the git, reviewed the contributions and made 
+                        sure everything got implemented smoothly, with some 
+                        pride I must say that we had only 2 Merge Conflicts 
+                        out of close to 30+ merges. I programmed much of the 
+                        gameplay like the walking and some of the gameplay 
+                        obstacles like the hover pads,magnetic objects and 
+                        the broader logic for interactable objects like 
+                        switches and pressure plates. I also became the UI 
+                        Designer and programmer some time into the project
+                        and the saving mechanic was also written by me.</p>
+                        
+                        <h2>Movement</h2>
+                        <p>The Movement divides the Screen in the middle with a little safe zone of about 5% to the left and right. Then wherever the player taps the magnet moves towards.
+                        </p>
+                        <pre class="cscode"><code>
+        <span class="key">private</span> IEnumerator FOVRoutine()
+        {
+            <span class="key">float</span> delay = 0.2f;
+            WaitForSeconds wait = <span class="key">new</span> WaitForSeconds(delay);
+        
+            <span class="key">while</span> (<span class="key">true</span>)
+            {
+                <span class="key">yield</span> <span class="key">return</span> wait;
+                FieldOfViewCheck();
+            }
+        }
+        
+        <span class="com">/// &lt;summary&gt;</span>
+        <span class="com">/// This Coroutine checks whether our player is inside the FOV of our enemy or not</span>
+        <span class="com">/// &lt;/summary&gt;</span>
+        <span class="key">private</span> <span class="key">void</span> FieldOfViewCheck()
+        {
+            <span class="key">if</span> (_isPlayerDead)
+            {
+                canSeePlayer = <span class="key">false</span>;
+                <span class="key">return</span>;
+            }
+            Collider[] rangeChecks = Physics.OverlapSphere(transform.position, CheckRadius, whatIsPlayer);
+        
+            <span class="key">if</span> (rangeChecks.Length != 0) <span class="com">//we are only looking for one object, if this does not work look that only the player has the Player Layer</span>
+            {
+                Transform target = rangeChecks[0].transform;
+                Vector3 directionTarget = (target.position - transform.position).normalized;
+        
+                <span class="key">if</span> (Vector3.Angle(transform.forward, directionTarget) &lt; angle / 2)
+                {
+                    <span class="key">float</span> distanceToTarget = Vector3.Distance(transform.position, target.position);
+        
+                    <span class="com">//is nothing obscuring the player</span>
+                    <span class="key">if</span> (!Physics.Raycast(transform.position, directionTarget, distanceToTarget, obstructionMask))
+                    {
+                        canSeePlayer = <span class="key">true</span>;
+                    }
+                    <span class="key">else</span> <span class="com">//something is obscuring the player</span>
+                    {
+                        canSeePlayer = <span class="key">false</span>;
+                    }
+                }
+            }
+            <span class="key">else</span> <span class="key">if</span> (canSeePlayer == <span class="key">true</span>) <span class="com">//when the player is not within the radius anymore unsee him</span>
+            {
+                canSeePlayer = <span class="key">false</span>;
+            }
+        }</code></pre>
+                        <h4>State Machine</h4>
+                        <p>Picture here</p>
+                        <div class="division"></div>
+                        <div class="enemy">
+                            <h3>The Sawrobot</h3>
+                            <p>The Sawrobot is an enemy, that follows the player once detected. His aim is to kill the player by constantly driving into him with his saw.</p>
+                            <pre class="cscode"><code>
+        <span class="key">public</span> <span class="key">override</span> <span class="key">void</span> Attack()
+            {
+                RotateToPoint(Player.transform.position);
+        
+                <span class="key">if</span> (Vector3.Distance(transform.position, Player.position) &gt;= AttackDist)
+                {
+                    <span class="key">if</span> (_agent.isStopped) _agent.isStopped = <span class="key">false</span>;
+                    Debug.Log(<span class="str">"Attacking Player"</span>);
+                    _agent.destination = Player.position;
+                    _agent.transform.position = Vector3.SmoothDamp(transform.position, <span class="key">new</span> Vector3(_agent.nextPosition.x, 0, _agent.nextPosition.z), <span class="key">ref</span> velocity, 0.3f );
+                }
+            }</code></pre>
+                                <div class="double-grid">
+                                    <figure>
+                                        <img src="/resources/img/Saw_Robot.png" alt="The Saw_Robot">
+                                        <figcaption>The SawEnemy</figcaption>
+                                    </figure><figure>
+                                        <img src="/resources/img/Saw_Robot_fov.png" alt="The Saw_Robot FOV">
+                                        <figcaption>The FOV of the SawEnemy and other checking values and their range</figcaption>
+                                    </figure>
+                                </div>
+                        </div>
+                        <div class="enemy">
+                            <h3>The Drone</h3>
+                            <p>The Drone is an enemy, that chases the player. When reaching a certain rage he halts and shoots at the player. He has a large FOV of 90</p>
+                            <pre class="cscode"><code>
+         <span class="key">public</span> <span class="key">override</span> <span class="key">void</span> Attack()
+         {
+             _agent.destination = transform.position;<span class="com">// lock the robot in place while Shooting at player</span>
+             transform.LookAt(Player);
+             ShootAtPlayer();
+         }
+        
+         <span class="key">private</span> <span class="key">void</span> ShootAtPlayer()
+         {
+             _bulletTime -= Time.deltaTime;
+        
+             <span class="key">if</span> (_bulletTime &gt; 0) <span class="key">return</span>;<span class="com">//do not shoot until "charging" complete</span>
+        
+             _bulletTime = timer;
+        
+               shootSound.Play();  
+             GameObject bulletObject =
+                 Instantiate(EnemyBullet, SpawnPoint.transform.position, transform.rotation);
+             Rigidbody bulletRigidbody = bulletObject.GetComponent&lt;Rigidbody&gt;();
+        
+             <span class="com">/*
+                 *for some reason there is a negative offset between the playermodel and the playerentity,
+                 * therefore it needs to shoot at the Cameraroot,
+                 * since it is the only component right above our player model
+                 */</span>
+             Vector3 direction = (Player.transform.position+offSet) - transform.position;
+             direction.Normalize();
+             bulletRigidbody.AddForce(direction * bulletSpeed, ForceMode.Impulse);
+         }</code></pre>
+                                <div class="double-grid">
+                                    <figure>
+                                        <img src="/resources/img/Drone.png" alt="The Drone Enemy">
+                                        <figcaption>The Enemy Drone</figcaption>
+                                    </figure>                                    
+                                    <figure>
+                                        <img src="/resources/img/Drone_fow.png" alt="The FOV of the Drone">
+                                        <figcaption>The FOV of the Drone and other checking values and their range</figcaption>
+                                      </figure>                                    
+                                </div>
+                        </div>
+                        <div class="enemy">
+                            <h3>The Endboss</h3>
+                            <p>The Endboss is an accumulation of the features introduced in the Sawrobot and the Drone. He has a big saw and a laser eye. Unfortunately I did not
+                                have that much time to develop and test the script properly, since he was introduced as an idea in the last month of development. If I would have to pick
+                                an enemy to rewrite it would be him
+                            </p>
+                            <figure>
+                                <img src="/resources/img/Boss.png" alt="The Endboss"> 
+                                <figcaption>The mighty Endboss</figcaption>
+                              </figure>                                         
+                        </div>
+                        <div class="division"></div>
+                        <div class="enemy">
+                            <h3>Grappling Hook</h3>
+                            <p>The Grappling Hook is a Gameplay Element, that allows the player to quickly traverse a certain distance by shooting a rope to that point.
+                               Programmwise I achived this by freezing the player for the jump, then shooting a Raycast to the target. If it was in Range I did a simple physics calculation
+                               to get the force needed to reach the point. Then I applied the force. During the end of production another programmer reworked my script to work with the
+                               input system choosen for the game. Unfortunately this person forgot to comment the code and the old script was overwritten instead of deprecated.
+                               Therefore I could only comment where I knew what was happening. You could call this script a joint venture.
+                            </p>
+                            <pre class="cscode"><code>
+        [Header(<span class="str">"References"</span>)]
+        <span class="key">private</span> MovementRigidbody pm;
+        <span class="key">public</span> Transform camera;
+        <span class="key">public</span> LayerMask whatIsGrappable;
+        [FormerlySerializedAs(<span class="str">"lr"</span>)] <span class="key">public</span> LineRenderer lr_Left;
+        <span class="key">public</span> LineRenderer lr_Right;
+        <span class="key">public</span> Rigidbody rb;
+        <span class="key">private</span> BasicEnergy _playerEnergy;
+        
+        [Header(<span class="str">"GrappleValues"</span>)]
+        <span class="key">public</span> <span class="key">float</span> maxGrappleDistance;
+        <span class="key">public</span> <span class="key">float</span> grappleDelayTime;
+        <span class="key">public</span> <span class="key">float</span> overshootYAxis;
+        
+        <span class="key">private</span> Vector3 grapplePoint;
+        
+        [Header(<span class="str">"CooldownValues"</span>)]
+        <span class="key">public</span> <span class="key">float</span> grapplingCd;
+        
+        <span class="key">private</span> <span class="key">float</span> grapplingTimer;
+        
+        [Header(<span class="str">"Input"</span>)]
+        <span class="key">public</span> KeyCode grappleKey = KeyCode.Mouse1;
+        
+        <span class="key">private</span> <span class="key">bool</span> grappling;
+        <span class="key">private</span> <span class="key">bool</span> _isGrappable;
+        <span class="key">private</span> <span class="key">bool</span> _freeze;
+        <span class="key">private</span> <span class="key">float</span> _speedStorage;
+        
+        [SerializeField] <span class="key">private</span> InputActionReference grappleAction;
+        
+        [Header(<span class="str">"Energy & Damage"</span>)] [SerializeField]
+        <span class="key">private</span> <span class="key">float</span> energyCost = 25f;
+        [SerializeField] <span class="key">private</span> <span class="key">int</span> damage = 1;
+        
+        
+        [Header(<span class="str">"Audio"</span>)]
+        [SerializeField] <span class="key">private</span> AudioSource startGrapple;
+        
+        
+        <span class="key">private</span> <span class="key">void</span> OnEnable()
+        {
+            grappleAction.action.Enable();
+            grappleAction.action.performed +=  StartGrapple;
+        }
+        
+        <span class="key">private</span> <span class="key">void</span> Start()
+        {
+            pm = GetComponentInParent&lt;MovementRigidbody&gt;();
+            _speedStorage = pm.MoveSpeed;
+            rb = GetComponentInParent&lt;Rigidbody&gt;();
+            _playerEnergy = PlayerInstance.Instance.GetPlayerEnergy();
+        }
+        
+        <span class="key">private</span> <span class="key">void</span> Update()
+        {
+            <span class="key">if</span> (_freeze)
+            {
+                pm.MoveSpeed = 0f; <span class="com">//freeze the player for a short time</span>
+            }
+            <span class="key">else</span>
+            {
+                pm.MoveSpeed = _speedStorage;
+            }
+        
+            <span class="key">if</span> (grapplingTimer &gt; 0)
+            {
+                grapplingTimer -= Time.deltaTime;
+            }
+            
+            <span class="key">if</span> (grappling && _isGrappable)
+            {
+                _freeze = <span class="key">false</span>;
+        
+                <span class="key">var</span> position = transform.position;
+                Vector3 lowestPoint = <span class="key">new</span> Vector3(position.x, position.y - 1f, position.z);
+                <span class="key">float</span> grapplePointRelativeYPosition = grapplePoint.y - lowestPoint.y;
+                <span class="key">float</span> highestPointOnArc = grapplePointRelativeYPosition + overshootYAxis;
+        
+                <span class="key">if</span> (grapplePointRelativeYPosition &lt; 0) highestPointOnArc = overshootYAxis;
+                JumpToPosition(grapplePoint, highestPointOnArc);
+            
+                Invoke(nameof(StopGrapple),1f);
+            }
+        
+            <span class="key">if</span> (grapplingTimer &gt; 0) grapplingTimer -= Time.deltaTime;
+        
+        }
+        
+        <span class="key">private</span> <span class="key">void</span> LateUpdate()
+        {
+            <span class="key">if</span> (grappling)
+            {
+                lr_Left.SetPosition(0,lr_Left.transform.position);
+                lr_Right.SetPosition(0,lr_Right.transform.position);
+            }
+        }
+        
+        <span class="com">/// &lt;summary&gt;</span>
+        <span class="com">/// Start the Grappling by Shooting a Raycast into the scene. If it hits something grappable continue with</span>
+        <span class="com">/// calculations. Otherwise revert.</span>
+        <span class="com">/// &lt;/summary&gt;</span>
+        <span class="com">/// &lt;param name="obj"&gt;&lt;/param&gt;</span>
+        <span class="key">private</span> <span class="key">void</span> StartGrapple(InputAction.CallbackContext obj)
+        {
+            <span class="key">if</span>(UIManager.Instance.HasActiveElements) <span class="key">return</span>;
+            <span class="key">if</span> (grapplingTimer &gt; 0) <span class="key">return</span>;
+            <span class="key">if</span> (!_playerEnergy.Use(energyCost)) <span class="key">return</span>;
+            
+            grappling = <span class="key">true</span>;
+            _freeze = <span class="key">true</span>;
+        
+            startGrapple.Play();
+            
+            RaycastHit hit;
+            <span class="key">if</span> (Physics.Raycast(camera.position, camera.forward, <span class="key">out</span> hit, maxGrappleDistance, whatIsGrappable))
+            {
+                grapplePoint = hit.point;
+                _isGrappable = <span class="key">true</span>;
+                Debug.Log(<span class="str">"Collider hit"</span> , hit.collider);
+                MakeDamage(hit.collider);
+                Invoke(nameof(ExecuteGrapple), grappleDelayTime);
+            }
+            <span class="key">else</span>
+            {
+                grapplePoint = camera.position + camera.forward * maxGrappleDistance;
+                _isGrappable = <span class="key">false</span>;
+                Debug.Log(<span class="str">"No Collider hit"</span>);
+                Invoke(nameof(StopGrapple), grappleDelayTime);
+            }
+        
+            lr_Left.enabled = <span class="key">true</span>;
+            lr_Left.SetPosition(1, grapplePoint);
+            lr_Right.enabled = <span class="key">true</span>;
+            lr_Right.SetPosition(1, grapplePoint);
+        
+        }
+        
+        <span class="key">private</span> <span class="key">void</span> MakeDamage(Collider raycastHit)
+        {
+            <span class="key">if</span> (raycastHit.TryGetComponent(<span class="key">out</span> BasicHealth health))
+            {
+                health.Damage(damage);
+            }
+        }
+        
+        <span class="com">/// &lt;summary&gt;</span>
+        <span class="com">/// disable everything.</span>
+        <span class="com">/// &lt;/summary&gt;</span>
+        <span class="key">private</span> <span class="key">void</span> StopGrapple()
+        {
+            _freeze = <span class="key">false</span>;
+            grappling = <span class="key">false</span>;
+            _isGrappable = <span class="key">false</span>;
+            
+                grapplingTimer = grapplingCd;
+        
+            lr_Left.enabled = <span class="key">false</span>;
+            lr_Right.enabled = <span class="key">false</span>;
+        }
+        
+        <span class="com">/// &lt;summary&gt;</span>
+        <span class="com">/// Jump to the calculated position</span>
+        <span class="com">/// &lt;/summary&gt;</span>
+        <span class="com">/// &lt;param name="targetPosition"&gt;&lt;/param&gt;</span>
+        <span class="com">/// &lt;param name="trajectoryHeight"&gt;&lt;/param&gt;</span>
+        <span class="key">private</span> <span class="key">void</span> JumpToPosition(Vector3 targetPosition, <span class="key">float</span> trajectoryHeight)
+        {
+            rb.velocity = CalculateJumpVelocity(transform.position, targetPosition, trajectoryHeight);
+        }
+        
+        
+        <span class="com">/// &lt;summary&gt;</span>
+        <span class="com">/// Execute the grappling </span>
+        <span class="com">/// &lt;/summary&gt;</span>
+        <span class="key">private</span> <span class="key">void</span> ExecuteGrapple()
+        {
+            _freeze = <span class="key">false</span>;
+            rb.constraints = RigidbodyConstraints.FreezeRotation;
+            <span class="com">//rotationfreeze is needed, because otherwise when the player hits the wall with its edge uncontrollable spinning ensues</span>
+        
+            
+            Vector3 lowestPoint = transform.position;
+            <span class="key">float</span> grapplePointRelativeYPos = grapplePoint.y - lowestPoint.y;
+            <span class="key">float</span> highestPointOnArc = grapplePointRelativeYPos + overshootYAxis;
+        
+            <span class="key">if</span> (grapplePointRelativeYPos &lt; 0) highestPointOnArc = overshootYAxis;
+            
+            JumpToPosition(grapplePoint, highestPointOnArc);
+        
+            Invoke(nameof(StopGrapple), 1f);
+        }
+        
+        
+        <span class="com">/// &lt;summary&gt;</span>
+        <span class="com">/// Calculate the jumpvelocity needed to reach the point. </span>
+        <span class="com">/// &lt;/summary&gt;</span>
+        <span class="com">/// &lt;param name="startpoint"&gt;&lt;/param&gt;</span>
+        <span class="com">/// &lt;param name="endPoint"&gt;&lt;/param&gt;</span>
+        <span class="com">/// &lt;param name="trajectoryHeight"&gt;&lt;/param&gt;</span>
+        <span class="com">/// &lt;returns&gt;&lt;/returns&gt;</span>
+        <span class="key">private</span> Vector3 CalculateJumpVelocity(Vector3 startpoint, Vector3 endPoint, <span class="key">float</span> trajectoryHeight)
+        {
+            <span class="key">float</span> gravity = Physics.gravity.y;
+            <span class="key">float</span> displacementY = endPoint.y - startpoint.y;
+            Vector3 displacementXZ = <span class="key">new</span> Vector3(endPoint.x - startpoint.x, 0f, endPoint.z - startpoint.z);
+            
+            Vector3 velocityY = Vector3.up * Mathf.Sqrt(-2 * gravity * trajectoryHeight);
+            Vector3 velocityXZ = displacementXZ / (Mathf.Sqrt(-2 * trajectoryHeight / gravity)
+                                                   + Mathf.Sqrt(2 * (displacementY - trajectoryHeight) / gravity));
+            
+            <span class="key">return</span> velocityXZ + velocityY;
+        
+        }
+        
+        <span class="key">private</span> <span class="key">void</span> OnDisable()
+        {
+            grappleAction.action.Disable();
+            grappleAction.action.performed -= StartGrapple;
+        }</code></pre>
+                            </div><!--enemy-->
+                        </div><!--section-->
+                    </fieldset><!--contribution-->
+                    <fieldset>
+                        <legend><h2>Conclusion</h2></legend>
+                        <div class="section">
+                            
+                            <p>
+                                This project was by far one of the most difficult 
+                                and out of comfort zone experience I had until now.
+                                This is due to the sheer amount of work that goes 
+                                into making a full fledged game, with such a small 
+                                team, and not only a prototype. I learned about a 
+                                lot of things I was not familier with at first like 
+                                UI Designing and Programming and therefore it was 
+                                really fun. I like challenging myself and this
+                                project really challenged me in unique ways. 
+                                I loved the team I had the chance to work with and 
+                                would do it again if I could. 
+                                Of course not everything was perfect. One of the 
+                                artists was really slaggy and slow so his stuff 
+                                arrived pretty delayed which slowed down the 
+                                whole team. I could have helped there by being more 
+                                strict with the time limit for him and communicating 
+                                more about everyones task status. But I learned my 
+                                lesson and will be more on point with everyones task 
+                                should I ever be in a leading position again. I am 
+                                really proud about this project.
+                            </p>
+                        </div>
+                    </fieldset>            
+            </div><!--wrapper-->
+        </main>
+        <footer></footer>
+    </body>
+    <link rel="stylesheet" href="/resources/css/style.css">
+    <link rel="stylesheet" href="/resources/css/grid.css">
+</html>
