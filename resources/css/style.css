@@ -103,6 +103,21 @@ p{
 }
 
 .enemy figcaption{
+  margin-top: 0.5vh;
+  text-align: center;
+}
+
+.section img{
+  margin-top: 1vh;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 25px;
+  max-width: 90%;
+}
+
+.section figcaption{
+  margin-top: 0.5vh;
   text-align: center;
 }
 

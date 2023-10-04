@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <header>
+            <div class="navbar">
+                <a href="/resources/html/about_me.html">About Me</a>
+                <a href="#news">News</a>
+                <div class="dropdown">
+                    <button class="dropbtn">Projects
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="/resources/html/game_development.html">Game Development</a>
+                        <a href="/resources/html/programming.html">Programming</a>
+                        <a href="/resources/html/game_design.html">Game Design</a>
+                        <a href="/resources/html/other.html">Other</a>
+                    </div><!--dropdown-content-->           
+                </div><!--dropdown-->
+            </div><!--navbar-->
+        </header>
+        <main>
+            <div class="wrapper">
+              <h1>Wind's Will</h1>
+              <fieldset>
+                <legend><h2>Project Status</h2></legend>
+                <div class="section">
+                    <p><b>Project Finished </b><a href="https://umbraluxx.itch.io/the-winds-will">Take a look</a></p>
+                  </div>
+              </fieldset><!--Project Status-->
+              <fieldset>
+                <legend><h2>Concept</h2></legend>
+                <div class="section">
+                    <p>The Wind’s Will is a hardcore arcade game developed 
+                        by me, Nando Berg, Elizabeth Seemann
+                        and Jessica Hermann for the Global Game Jam 2023.
+                        The theme for this Jam was “Roots”, therefore we 
+                        conceptualized the idea that the user should
+                        accompany a dandelion seed on its way to sprout new 
+                        roots.</p>
+                  </div>
+              </fieldset><!--Concept-->
+              <fieldset>
+                <legend><h2>Logline</h2></legend>
+                <div class="section">
+                    <p>„Control a wind current and accompany a lonely
+                        dandelion seed on its journey to a new home. Dodge
+                        dangers and carry the seed as far as possible so 
+                        that it can take root and start a new generation at
+                        which many new flowers will emerge.</p>
+                  </div>
+              </fieldset><!--Logline-->
+              <fieldset>
+                <legend><h2>Gameplay</h2></legend>
+                <div class="section">
+                    <p>Left-Mouse Button to fly, only possible if energy 
+                        meter is filled with bubbles</p>
+                  </div>
+              </fieldset><!--Gameplay-->
+              <fieldset>
+                <legend><h2>Contribution</h2></legend>
+                <div class="section">
+                    <p>I coded some enemies and the parallax effect for 
+                        the game. The enemies I did were: the bird,
+                        the frog and a falling dandelion seed.</p>
+                        
+                        <h2>Bird</h2>
+                        <p>The Bird is a simple enemy which flies 
+                            from right to left and kills the player on
+                             impact
+                        </p>
+                        <figure>
+                            <img src="/resources/img/bird.png" alt="bird">
+                            <figcaption>The Bird</figcaption>
+                        </figure>                     
+            
+                        <h2>Frog</h2>
+                        <p>The Frog at first seems like the bird, 
+                            only on the ground. But it is way more
+                            dangerous. When the player flies through a hit
+                            box in front of the frog, the frog will
+                            jump and try to catch the player midair.
+                        </p>
+                        <figure>
+                            <img src="/resources/img/frog.png" alt="bird">
+                            <figcaption>The Frog</figcaption>
+                        </figure>
+
+                        <h2>Falling Seed</h2>
+                        <p>The seeds are an enemy, which 
+                            was coded but not implemented. It was
+                            supposed to be a hazard from up above. It would 
+                            fall downwards in a sinus curve to
+                            emulate the wind hitting the seed and the
+                            player would have to avoid it.</p>
+                            
+                        <h2>Parallax Effect</h2>
+                        <p>As with every old-school arcade game we used the 
+                            parallax effect to simulate depth, but as a
+                            deliberate design choice instead of being limited by 
+                            our resources. I was in charge of Coding the effect, 
+                            while Elizabeth Seeman would draw the background
+                            layers. The Effect works by displaying the same 
+                            three pieces of background three times in a row. The 
+                            camera would then move to the right while the pieces 
+                            would follow with different velocities to simulate 
+                            the depth of moving.
+                            When a certain point is reached the first background 
+                            would be set to the end of the last background to 
+                            simulate a permanent background.</p>
+                            
+            <pre class="cscode"><code><span class="key">public</span> <span class="key">class</span> Parallax : MonoBehaviour{
+                    <span class="key">private</span> <span class="key">float</span> _lenght;
+                    <span class="key">private</span> <span class="key">float</span> _startpos;
+                    <span class="key">public</span> GameObject cam;
+                    <span class="key">public</span> <span class="key">float</span> parallaxEffect;
+                    <span class="key">public</span> <span class="key">float</span> scrollspeed;
+                
+                    <span class="com">// Start is called before the first frame update</span>
+                    <span class="key">void</span> Start()
+                    {
+                        _startpos = transform.position.x;
+                        _lenght = GetComponent&lt;SpriteRenderer&gt;().bounds.size.x;
+                    }
+                
+                    <span class="com">// Update is called once per frame</span>
+                    <span class="key">void</span> FixedUpdate()
+                    {
+                        <span class="key">float</span> temp = (cam.transform.position.x * (1 - parallaxEffect));<span class="com">// helps with resetting the background</span>
+                        <span class="key">float</span> distance = (cam.transform.position.x * parallaxEffect);<span class="com">// distance is calculated relative to the main camera</span>
+                
+                        transform.position = <span class="key">new</span> Vector3(_startpos + distance, transform.position.y); <span class="com">//relative Position of Background is done here</span>
+                        cam.transform.position += <span class="key">new</span> Vector3(scrollspeed, 0); <span class="com">//automatic forward movement is defined here -&gt; the higher the scrollspeed added the higher the movement</span>
+                
+                        <span class="com">//reset values when border is reached</span>
+                        <span class="key">if</span> (temp &gt; _startpos + _lenght-1) _startpos += _lenght;
+                        <span class="key">else</span> <span class="key">if</span> (temp &lt; _startpos - _lenght+1) _startpos -= _lenght;
+            }</code></pre>
+                    </fieldset><!--contribution-->
+                    <fieldset>
+                        <legend><h2>Conclusion</h2></legend>
+                        <div class="section">
+                            
+                            <p>
+                                During this project I learned how simple things can 
+                                come together to create a compelling and fun game. I 
+                                never coded a parallax effect before and thinking 
+                                about different enemy types and how to implement 
+                                them was very fun. Of course, I had fun working with 
+                                my group, since we already were an established team 
+                                and knew our strengths and weaknesses from
+                                different previous projects. I would describe this 
+                                project as very fun and successful.
+                            </p>
+                        </div><!--section-->
+                    </fieldset><!--conclusion-->            
+            </div><!--wrapper-->
+        </main>
+        <footer></footer>
+    </body>
+    <link rel="stylesheet" href="/resources/css/style.css">
+    <link rel="stylesheet" href="/resources/css/grid.css">
+</html>

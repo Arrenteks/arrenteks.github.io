@@ -55,6 +55,10 @@ figure:hover img {
   transform: scale(1.2);
 }
 
+.project_card p{
+  font-size: 30px;
+}
+
 
 @supports not (-webkit-mask-clip: text) {
   figure figcaption {
