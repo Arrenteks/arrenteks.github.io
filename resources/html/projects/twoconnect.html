@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
-    <head></head>
+    <head>
+        <meta charset="utf-8"/>
+        <title>TwoConect</title> 
+     </head>
     <body>
         <header>
             <div class="navbar">
@@ -21,7 +24,7 @@
         </header>
         <main>
             <div class="wrapper">
-              <h1>[Ex]change Game Project</h1>
+              <h1>TwoConnect</h1>
               <fieldset>
                 <legend><h2>Project Status</h2></legend>
                 <div class="section">
@@ -69,377 +72,357 @@
                         switches and pressure plates. I also became the UI 
                         Designer and programmer some time into the project
                         and the saving mechanic was also written by me.</p>
+
+                        <div class="division"></div>
                         
-                        <h2>Movement</h2>
+                        <h3>Movement</h3>
                         <p>The Movement divides the Screen in the middle with a little safe zone of about 5% to the left and right. Then wherever the player taps the magnet moves towards.
                         </p>
-                        <pre class="cscode"><code>
-        <span class="key">private</span> IEnumerator FOVRoutine()
+<pre class="cscode"><code>
+<span class="key">using</span> System;
+<span class="key">using</span> System.Collections;
+<span class="key">using</span> System.Collections.Generic;
+<span class="key">using</span> UnityEngine;
+<span class="key">using</span> UnityEngine.Serialization;
+<span class="key">using</span> UnityEngine.UI;
+
+
+<span class="key">public</span> <span class="key">class</span> PlayerController : MonoBehaviour
+{
+
+    [SerializeField]
+    <span class="key">public</span> AudioSource sound;
+
+    [Header(<span class="str">"Movement"</span>)] <span class="key">public</span> Vector2 velocity;
+
+    <span class="key">public</span> <span class="key">float</span> Speed;
+    <span class="key">public</span> <span class="key">float</span> WalkAcceleration;
+    <span class="key">public</span> <span class="key">float</span> GroundDeccaleration;
+
+    [Header(<span class="str">"Spawn"</span>)] [SerializeField] Transform SpawnPoint;
+
+    [Header(<span class="str">"Layermask"</span>)] [SerializeField] <span class="key">private</span> LayerMask whatIsNotPlayer;
+
+    <span class="key">private</span> <span class="key">int</span> _percentile;
+    <span class="key">private</span> Animator _animator;
+    <span class="key">private</span> SpriteRenderer _renderer;
+    <span class="key">private</span> <span class="key">bool</span> _isGrounded;
+    <span class="key">public</span> <span class="key">float</span> distToGround;
+    <span class="key">private</span> Rigidbody2D rb2D;
+
+
+
+    <span class="com">// Start is called before the first frame update</span>
+    <span class="key">void</span> Start()
+    {
+        _percentile = Screen.width * 10 / 100;
+        _animator = GetComponent&lt;Animator&gt;();
+        _renderer = GetComponent&lt;SpriteRenderer&gt;();
+        distToGround = GetComponent&lt;BoxCollider2D&gt;().bounds.extents.y + 0.2f; <span class="com">//height</span>
+        Debug.Log(distToGround);
+        Physics2D.queriesHitTriggers = <span class="key">false</span>;<span class="com">//ignore triggers for raycast</span>
+        _isGrounded = GroundedCheck();
+        rb2D = GetComponent&lt;Rigidbody2D&gt;();
+    }
+
+    <span class="key">private</span> <span class="key">void</span> Update()
+    {
+        _isGrounded = GroundedCheck();
+    }
+
+    <span class="com">// Update is called once per frame</span>
+    <span class="key">void</span> FixedUpdate()
+    {
+
+        <span class="key">float</span> moveInput = Input.GetAxisRaw(<span class="str">"Horizontal"</span>); <span class="com">//move right = 1, move left = -1</span>
+
+        <span class="key">if</span> (Input.touchCount &gt; 0)
         {
-            <span class="key">float</span> delay = 0.2f;
-            WaitForSeconds wait = <span class="key">new</span> WaitForSeconds(delay);
-        
-            <span class="key">while</span> (<span class="key">true</span>)
+            Touch touch = Input.GetTouch(0);
+
+            <span class="key">switch</span> (touch.phase)<span class="com">//on touching the screen on the left or right begin walking there</span>
             {
-                <span class="key">yield</span> <span class="key">return</span> wait;
-                FieldOfViewCheck();
+                <span class="key">case</span> TouchPhase.Began:
+                    <span class="key">if</span> (touch.position.x &lt; (Screen.width / 2) - _percentile)<span class="com">//left</span>
+                    {
+                        moveInput = -1;
+                        Debug.Log(<span class="str">"began touching left"</span>);
+                        _renderer.flipX = <span class="key">true</span>;
+
+                    }
+
+                    <span class="key">if</span> (touch.position.x &gt; (Screen.width / 2) + _percentile)<span class="com">//right</span>
+                    {
+                        moveInput = 1;
+                        Debug.Log(<span class="str">"began touching right"</span>);
+                        _renderer.flipX = <span class="key">false</span>;
+                    }
+
+                    <span class="com">//_animator.SetBool("isWalking", true);</span>
+                    <span class="key">break</span>;
+                <span class="key">case</span> TouchPhase.Stationary:
+                    <span class="key">if</span> (touch.position.x &lt; (Screen.width / 2) - _percentile)<span class="com">//left</span>
+                    {
+                        moveInput = -1;
+                        Debug.Log(<span class="str">"began touching left"</span>);
+                    }
+
+                    <span class="key">if</span> (touch.position.x &gt; (Screen.width / 2) - _percentile)<span class="com">//right</span>
+                    {
+                        moveInput = 1;
+                        Debug.Log(<span class="str">"began touching right"</span>);
+                    }
+
+                    <span class="com">//_animator.SetBool("isWalking", true);</span>
+                    <span class="key">break</span>;
+
+                <span class="key">case</span> TouchPhase.Ended:<span class="com">//stop Moving</span>
+                    <span class="com">//_animator.SetBool("isWalking", false);</span>
+                    Debug.Log(<span class="str">"Stopped touching"</span>);
+                    moveInput = 0;
+                    <span class="key">break</span>;
             }
+
+        }
+
+        <span class="key">if</span> (moveInput != 0)
+        {
+            <span class="key">if</span> (_isGrounded)
+            {
+                _animator.SetBool(<span class="str">"isWalking"</span>, <span class="key">true</span>);
+                _animator.SetBool(<span class="str">"isFloating"</span>, <span class="key">false</span>);
+                _animator.SetBool(<span class="str">"isJumping"</span>, <span class="key">false</span>);
+            }
+
+            velocity.x = Mathf.MoveTowards(velocity.x, Speed * moveInput, WalkAcceleration * Time.fixedDeltaTime);
+            transform.Translate(velocity * Time.fixedDeltaTime);
+        }
+        <span class="com">//moveinput == 0</span>
+        {
+            _animator.SetBool(<span class="str">"isWalking"</span>, <span class="key">false</span>);
+            velocity.x = Mathf.MoveTowards(velocity.x, 0, GroundDeccaleration * Time.fixedDeltaTime);
         }
         
-        <span class="com">/// &lt;summary&gt;</span>
-        <span class="com">/// This Coroutine checks whether our player is inside the FOV of our enemy or not</span>
-        <span class="com">/// &lt;/summary&gt;</span>
-        <span class="key">private</span> <span class="key">void</span> FieldOfViewCheck()
+        Debug.LogError(rb2D.velocity);
+
+        <span class="key">if</span> (rb2D.velocity.y &lt; 0 && !_isGrounded)<span class="com">//Animatior Values</span>
         {
-            <span class="key">if</span> (_isPlayerDead)
-            {
-                canSeePlayer = <span class="key">false</span>;
-                <span class="key">return</span>;
-            }
-            Collider[] rangeChecks = Physics.OverlapSphere(transform.position, CheckRadius, whatIsPlayer);
-        
-            <span class="key">if</span> (rangeChecks.Length != 0) <span class="com">//we are only looking for one object, if this does not work look that only the player has the Player Layer</span>
-            {
-                Transform target = rangeChecks[0].transform;
-                Vector3 directionTarget = (target.position - transform.position).normalized;
-        
-                <span class="key">if</span> (Vector3.Angle(transform.forward, directionTarget) &lt; angle / 2)
-                {
-                    <span class="key">float</span> distanceToTarget = Vector3.Distance(transform.position, target.position);
-        
-                    <span class="com">//is nothing obscuring the player</span>
-                    <span class="key">if</span> (!Physics.Raycast(transform.position, directionTarget, distanceToTarget, obstructionMask))
-                    {
-                        canSeePlayer = <span class="key">true</span>;
-                    }
-                    <span class="key">else</span> <span class="com">//something is obscuring the player</span>
-                    {
-                        canSeePlayer = <span class="key">false</span>;
-                    }
-                }
-            }
-            <span class="key">else</span> <span class="key">if</span> (canSeePlayer == <span class="key">true</span>) <span class="com">//when the player is not within the radius anymore unsee him</span>
-            {
-                canSeePlayer = <span class="key">false</span>;
-            }
-        }</code></pre>
-                        <h4>State Machine</h4>
-                        <p>Picture here</p>
-                        <div class="division"></div>
+            _animator.SetBool(<span class="str">"isJumping"</span>, <span class="key">true</span>);
+            _animator.SetBool(<span class="str">"isFloating"</span>, <span class="key">false</span>);
+            _animator.SetBool(<span class="str">"isWalking"</span>, <span class="key">false</span>);
+        }
+        <span class="key">else</span> <span class="key">if</span> (rb2D.velocity.y &gt; 0 && !_isGrounded)
+        {
+            _animator.SetBool(<span class="str">"isJumping"</span>, <span class="key">false</span>);
+            _animator.SetBool(<span class="str">"isFloating"</span>, <span class="key">true</span>);
+            _animator.SetBool(<span class="str">"isWalking"</span>, <span class="key">false</span>);
+        }
+        <span class="key">else</span> <span class="key">if</span> (rb2D.velocity.y != 0 && _isGrounded)
+        {
+            _animator.SetBool(<span class="str">"isJumping"</span>, <span class="key">false</span>);
+            _animator.SetBool(<span class="str">"isFloating"</span>, <span class="key">false</span>);
+            _animator.SetBool(<span class="str">"isWalking"</span>, <span class="key">false</span>); 
+        }
+    }
+
+    <span class="com">/// &lt;summary&gt;</span>
+    <span class="com">/// Resets the Player if he walks into an obstacle</span>
+    <span class="com">/// &lt;/summary&gt;</span>
+    <span class="com">/// &lt;param name="col"&gt;&lt;/param&gt;</span>
+    <span class="key">private</span> <span class="key">void</span> OnCollisionEnter2D(Collision2D col)
+    {
+        <span class="key">if</span> (col.gameObject.CompareTag(<span class="str">"Obstacles"</span>))
+        {
+            sound.Play();
+            transform.position = <span class="key">new</span> Vector3(SpawnPoint.position.x, SpawnPoint.position.y);
+        }
+        <span class="key">else</span> <span class="key">if</span> (col.gameObject.CompareTag(<span class="str">"Collectables"</span>))
+        {
+            col.gameObject.GetComponent&lt;IInteractables&gt;().OnInteraction();
+        }
+    }
+
+    <span class="com">/// &lt;summary&gt;</span>
+    <span class="com">/// Interacts with an Interactable when touched</span>
+    <span class="com">/// &lt;/summary&gt;</span>
+    <span class="com">/// &lt;param name="col"&gt;&lt;/param&gt;</span>
+    <span class="key">private</span> <span class="key">void</span> OnTriggerEnter2D(Collider2D col)
+    {
+        <span class="key">if</span> (col.gameObject.CompareTag(<span class="str">"Interactable"</span>))
+        {
+            col.gameObject.GetComponent&lt;IInteractables&gt;().OnInteraction();
+        }
+    }
+
+    <span class="com">/// &lt;summary&gt;</span>
+    <span class="com">/// Checks whether or not the player is grounded by casting a ray down from the lower half of the sprite, if the ray</span>
+    <span class="com">/// hits a gameobject with a non-player layer the player is grounded</span>
+    <span class="com">/// &lt;/summary&gt;</span>
+    <span class="com">/// &lt;returns&gt;&lt;/returns&gt;</span>
+    <span class="key">private</span> <span class="key">bool</span> GroundedCheck()
+    {
+        RaycastHit2D raycastHit2D = Physics2D.Raycast(transform.position, Vector3.down, distToGround, whatIsNotPlayer);
+        Color raycolor;
+        <span class="key">if</span> (raycastHit2D.collider != <span class="key">null</span>)<span class="com">//Debug Values</span>
+        {
+            raycolor = Color.green;
+        }
+        <span class="key">else</span>
+        {
+            raycolor = Color.red;
+        }
+
+        Debug.DrawRay(transform.position, Vector3.down * distToGround, raycolor);
+        Debug.Log(raycastHit2D.collider);
+        <span class="key">return</span> raycastHit2D.collider != <span class="key">null</span>;
+    }
+}
+    </code></pre>
+    <div class="division"></div>
+
                         <div class="enemy">
-                            <h3>The Sawrobot</h3>
-                            <p>The Sawrobot is an enemy, that follows the player once detected. His aim is to kill the player by constantly driving into him with his saw.</p>
-                            <pre class="cscode"><code>
-        <span class="key">public</span> <span class="key">override</span> <span class="key">void</span> Attack()
-            {
-                RotateToPoint(Player.transform.position);
-        
-                <span class="key">if</span> (Vector3.Distance(transform.position, Player.position) &gt;= AttackDist)
-                {
-                    <span class="key">if</span> (_agent.isStopped) _agent.isStopped = <span class="key">false</span>;
-                    Debug.Log(<span class="str">"Attacking Player"</span>);
-                    _agent.destination = Player.position;
-                    _agent.transform.position = Vector3.SmoothDamp(transform.position, <span class="key">new</span> Vector3(_agent.nextPosition.x, 0, _agent.nextPosition.z), <span class="key">ref</span> velocity, 0.3f );
-                }
-            }</code></pre>
-                                <div class="double-grid">
-                                    <figure>
-                                        <img src="/resources/img/Saw_Robot.png" alt="The Saw_Robot">
-                                        <figcaption>The SawEnemy</figcaption>
-                                    </figure><figure>
-                                        <img src="/resources/img/Saw_Robot_fov.png" alt="The Saw_Robot FOV">
-                                        <figcaption>The FOV of the SawEnemy and other checking values and their range</figcaption>
-                                    </figure>
-                                </div>
-                        </div>
-                        <div class="enemy">
-                            <h3>The Drone</h3>
-                            <p>The Drone is an enemy, that chases the player. When reaching a certain rage he halts and shoots at the player. He has a large FOV of 90</p>
-                            <pre class="cscode"><code>
-         <span class="key">public</span> <span class="key">override</span> <span class="key">void</span> Attack()
-         {
-             _agent.destination = transform.position;<span class="com">// lock the robot in place while Shooting at player</span>
-             transform.LookAt(Player);
-             ShootAtPlayer();
-         }
-        
-         <span class="key">private</span> <span class="key">void</span> ShootAtPlayer()
-         {
-             _bulletTime -= Time.deltaTime;
-        
-             <span class="key">if</span> (_bulletTime &gt; 0) <span class="key">return</span>;<span class="com">//do not shoot until "charging" complete</span>
-        
-             _bulletTime = timer;
-        
-               shootSound.Play();  
-             GameObject bulletObject =
-                 Instantiate(EnemyBullet, SpawnPoint.transform.position, transform.rotation);
-             Rigidbody bulletRigidbody = bulletObject.GetComponent&lt;Rigidbody&gt;();
-        
-             <span class="com">/*
-                 *for some reason there is a negative offset between the playermodel and the playerentity,
-                 * therefore it needs to shoot at the Cameraroot,
-                 * since it is the only component right above our player model
-                 */</span>
-             Vector3 direction = (Player.transform.position+offSet) - transform.position;
-             direction.Normalize();
-             bulletRigidbody.AddForce(direction * bulletSpeed, ForceMode.Impulse);
-         }</code></pre>
-                                <div class="double-grid">
-                                    <figure>
-                                        <img src="/resources/img/Drone.png" alt="The Drone Enemy">
-                                        <figcaption>The Enemy Drone</figcaption>
-                                    </figure>                                    
-                                    <figure>
-                                        <img src="/resources/img/Drone_fow.png" alt="The FOV of the Drone">
-                                        <figcaption>The FOV of the Drone and other checking values and their range</figcaption>
-                                      </figure>                                    
-                                </div>
-                        </div>
-                        <div class="enemy">
-                            <h3>The Endboss</h3>
-                            <p>The Endboss is an accumulation of the features introduced in the Sawrobot and the Drone. He has a big saw and a laser eye. Unfortunately I did not
-                                have that much time to develop and test the script properly, since he was introduced as an idea in the last month of development. If I would have to pick
-                                an enemy to rewrite it would be him
+                            <h3>Timed Jumping Plates</h3>
+                            <p>The Timed Jumping Plates are a level object in the game, that activates and deactivates after a short time. They use the IInteractable Interface
+                                to make it easier to engage and disengage them on interaction. Depending on which sister stands on the Plate they are either repulsed or not. To istigate 
+                                the impression, the player is constantly repulsed I used the velocity attribute of the Rigidbody2D component to work around Unitys Gravity without
+                                creating an unrealistic repulsion effect.
                             </p>
-                            <figure>
-                                <img src="/resources/img/Boss.png" alt="The Endboss"> 
-                                <figcaption>The mighty Endboss</figcaption>
-                              </figure>                                         
-                        </div>
-                        <div class="division"></div>
-                        <div class="enemy">
-                            <h3>Grappling Hook</h3>
-                            <p>The Grappling Hook is a Gameplay Element, that allows the player to quickly traverse a certain distance by shooting a rope to that point.
-                               Programmwise I achived this by freezing the player for the jump, then shooting a Raycast to the target. If it was in Range I did a simple physics calculation
-                               to get the force needed to reach the point. Then I applied the force. During the end of production another programmer reworked my script to work with the
-                               input system choosen for the game. Unfortunately this person forgot to comment the code and the old script was overwritten instead of deprecated.
-                               Therefore I could only comment where I knew what was happening. You could call this script a joint venture.
-                            </p>
-                            <pre class="cscode"><code>
+<pre class="cscode"><code>
+    <span class="key">using</span> System;
+    <span class="key">using</span> System.Collections;
+    <span class="key">using</span> System.Collections.Generic;
+    <span class="key">using</span> UnityEngine;
+    
+    <span class="key">public</span> <span class="key">class</span> TimedJumpPlate : MonoBehaviour
+    {
         [Header(<span class="str">"References"</span>)]
-        <span class="key">private</span> MovementRigidbody pm;
-        <span class="key">public</span> Transform camera;
-        <span class="key">public</span> LayerMask whatIsGrappable;
-        [FormerlySerializedAs(<span class="str">"lr"</span>)] <span class="key">public</span> LineRenderer lr_Left;
-        <span class="key">public</span> LineRenderer lr_Right;
-        <span class="key">public</span> Rigidbody rb;
-        <span class="key">private</span> BasicEnergy _playerEnergy;
-        
-        [Header(<span class="str">"GrappleValues"</span>)]
-        <span class="key">public</span> <span class="key">float</span> maxGrappleDistance;
-        <span class="key">public</span> <span class="key">float</span> grappleDelayTime;
-        <span class="key">public</span> <span class="key">float</span> overshootYAxis;
-        
-        <span class="key">private</span> Vector3 grapplePoint;
-        
-        [Header(<span class="str">"CooldownValues"</span>)]
-        <span class="key">public</span> <span class="key">float</span> grapplingCd;
-        
-        <span class="key">private</span> <span class="key">float</span> grapplingTimer;
-        
-        [Header(<span class="str">"Input"</span>)]
-        <span class="key">public</span> KeyCode grappleKey = KeyCode.Mouse1;
-        
-        <span class="key">private</span> <span class="key">bool</span> grappling;
-        <span class="key">private</span> <span class="key">bool</span> _isGrappable;
-        <span class="key">private</span> <span class="key">bool</span> _freeze;
-        <span class="key">private</span> <span class="key">float</span> _speedStorage;
-        
-        [SerializeField] <span class="key">private</span> InputActionReference grappleAction;
-        
-        [Header(<span class="str">"Energy & Damage"</span>)] [SerializeField]
-        <span class="key">private</span> <span class="key">float</span> energyCost = 25f;
-        [SerializeField] <span class="key">private</span> <span class="key">int</span> damage = 1;
-        
-        
-        [Header(<span class="str">"Audio"</span>)]
-        [SerializeField] <span class="key">private</span> AudioSource startGrapple;
-        
-        
-        <span class="key">private</span> <span class="key">void</span> OnEnable()
-        {
-            grappleAction.action.Enable();
-            grappleAction.action.performed +=  StartGrapple;
-        }
-        
+        <span class="key">public</span> GameObject ObjectToBeAttracted;
+        <span class="key">public</span> GameObject ObjectToBeRepulsed;
+        <span class="key">public</span> GameObject MagneticSpaces;
+    
+        [Header(<span class="str">"Gameplay Values"</span>)]
+        <span class="key">public</span> <span class="key">bool</span> isActive = <span class="key">true</span>;
+        [Tooltip(<span class="str">"Going above 1.0 only reccomended, when you want a really strong effect. In normal setting use fractions of one."</span>)]
+        <span class="key">public</span> <span class="key">float</span> magnetStrength = 1.0f;
+        [SerializeField] <span class="key">private</span> <span class="key">float</span> Timer = 3.0f;
+    
+        <span class="key">private</span> <span class="key">float</span> time;
+    
+    
+    
         <span class="key">private</span> <span class="key">void</span> Start()
         {
-            pm = GetComponentInParent&lt;MovementRigidbody&gt;();
-            _speedStorage = pm.MoveSpeed;
-            rb = GetComponentInParent&lt;Rigidbody&gt;();
-            _playerEnergy = PlayerInstance.Instance.GetPlayerEnergy();
+            <span class="key">if</span>(ObjectToBeAttracted == <span class="key">null</span> && CompareTag(<span class="str">"Positive"</span>)) ObjectToBeAttracted = GameObject.FindGameObjectWithTag(<span class="str">"Lucy"</span>);
+            <span class="key">else</span> <span class="key">if</span>(ObjectToBeAttracted == <span class="key">null</span> && CompareTag(<span class="str">"Negative"</span>)) ObjectToBeAttracted = GameObject.FindGameObjectWithTag(<span class="str">"Joy"</span>);
+            
+            <span class="key">if</span>(ObjectToBeRepulsed == <span class="key">null</span> && CompareTag(<span class="str">"Positive"</span>)) ObjectToBeRepulsed = GameObject.FindGameObjectWithTag(<span class="str">"Joy"</span>);
+            <span class="key">else</span> <span class="key">if</span>(ObjectToBeRepulsed == <span class="key">null</span> && CompareTag(<span class="str">"Negative"</span>)) ObjectToBeRepulsed = GameObject.FindGameObjectWithTag(<span class="str">"Lucy"</span>);
+            
+            <span class="key">if</span>(!isActive) MagneticSpaces.SetActive(<span class="key">false</span>);
+            time = Timer;
         }
-        
+    
         <span class="key">private</span> <span class="key">void</span> Update()
         {
-            <span class="key">if</span> (_freeze)
+            time -= Time.deltaTime;
+            <span class="key">if</span> (time &lt;= 0)
             {
-                pm.MoveSpeed = 0f; <span class="com">//freeze the player for a short time</span>
+                OnInteraction();
+                time = Timer;
+            }
+        }
+    
+        <span class="key">private</span> <span class="key">void</span> OnTriggerStay2D(Collider2D other)
+        {
+            <span class="key">if</span> (isActive)
+            {
+                <span class="key">if</span> ((other.CompareTag(<span class="str">"Lucy"</span>) && CompareTag(<span class="str">"Positive"</span>)) || (other.CompareTag(<span class="str">"Joy"</span>) && CompareTag(<span class="str">"Negative"</span>)))
+                {
+                    other.GetComponent&lt;Rigidbody2D&gt;().velocity = Vector2.up * magnetStrength;
+                }
+            }
+        }
+    
+        <span class="key">public</span> <span class="key">void</span> OnInteraction()
+        {
+            isActive = !isActive;
+    
+            <span class="key">if</span> (isActive == <span class="key">true</span>)
+            {
+                MagneticSpaces.SetActive(<span class="key">true</span>);
             }
             <span class="key">else</span>
             {
-                pm.MoveSpeed = _speedStorage;
+                MagneticSpaces.SetActive(<span class="key">false</span>);
             }
+            
+        }
+    }
+    </code></pre>                                     
+                </div>
+                <div class="division"></div>
+                <div class="enemy">
+                    <h3>StartupFrameRate</h3>
+                    <p>In the Beginning of the Project we chose the Unity Version 2021.3.22f1. This Version unfortunately had some problems with a consistent framerate on mobile.
+                        But we already had made some progress on the game, when we noticed the bug and the next version where this problem would be fixed was not released yet.
+                        Therefore I researeched into the problem and discovered a fix on the Untiy Subreddit. This Code is my version of this fix. It basically sets the maximum 
+                        framerate manually, waits for the frames to pass and tells the programm to forgo Vsync, since this was where the problem was originating.
+                    </p>
+<pre class="cscode"><code>
+    <span class="key">using</span> System;
+    <span class="key">using</span> System.Collections;
+    <span class="key">using</span> System.Collections.Generic;
+    <span class="key">using</span> System.Threading;
+    <span class="key">using</span> UnityEngine;
+    <span class="key">public</span> <span class="key">class</span> StartUpFrameRate : MonoBehaviour
+    {
         
-            <span class="key">if</span> (grapplingTimer &gt; 0)
+        [Header(<span class="str">"Frame Settings"</span>)]
+        <span class="key">public</span> <span class="key">int</span> MaxRate = 9999;
+        <span class="key">public</span> <span class="key">float</span> TargetFrameRate = 60.0f;
+    
+        <span class="key">private</span> <span class="key">float</span> _currentFrameTime;
+    
+    
+        <span class="key">private</span> <span class="key">void</span> Awake()
+        {
+            QualitySettings.vSyncCount = 0;<span class="com">//schalte vsync ab</span>
+            Application.targetFrameRate = MaxRate;
+    
+            _currentFrameTime = Time.realtimeSinceStartup;
+    
+            StartCoroutine(<span class="str">"WaitForNextFrame"</span>);
+    
+        }
+    
+    
+        IEnumerator WaitForNextFrame()
+        {
+            <span class="key">while</span> (<span class="key">true</span>)
             {
-                grapplingTimer -= Time.deltaTime;
-            }
-            
-            <span class="key">if</span> (grappling && _isGrappable)
-            {
-                _freeze = <span class="key">false</span>;
-        
-                <span class="key">var</span> position = transform.position;
-                Vector3 lowestPoint = <span class="key">new</span> Vector3(position.x, position.y - 1f, position.z);
-                <span class="key">float</span> grapplePointRelativeYPosition = grapplePoint.y - lowestPoint.y;
-                <span class="key">float</span> highestPointOnArc = grapplePointRelativeYPosition + overshootYAxis;
-        
-                <span class="key">if</span> (grapplePointRelativeYPosition &lt; 0) highestPointOnArc = overshootYAxis;
-                JumpToPosition(grapplePoint, highestPointOnArc);
-            
-                Invoke(nameof(StopGrapple),1f);
-            }
-        
-            <span class="key">if</span> (grapplingTimer &gt; 0) grapplingTimer -= Time.deltaTime;
-        
-        }
-        
-        <span class="key">private</span> <span class="key">void</span> LateUpdate()
-        {
-            <span class="key">if</span> (grappling)
-            {
-                lr_Left.SetPosition(0,lr_Left.transform.position);
-                lr_Right.SetPosition(0,lr_Right.transform.position);
+                <span class="key">yield</span> <span class="key">return</span> <span class="key">new</span> WaitForEndOfFrame();
+    
+                _currentFrameTime += 1.0f / TargetFrameRate;
+    
+                <span class="key">var</span> t = Time.realtimeSinceStartup;
+                <span class="key">var</span> sleepTime = _currentFrameTime - t - 0.01f;
+    
+                <span class="key">if</span> (sleepTime &gt; 0)
+                {
+                    Thread.Sleep((<span class="key">int</span>) (sleepTime * 1000));
+    
+                    <span class="key">while</span> (t &lt; _currentFrameTime)
+                    {
+                        t = Time.realtimeSinceStartup;
+                    }
+                }
             }
         }
-        
-        <span class="com">/// &lt;summary&gt;</span>
-        <span class="com">/// Start the Grappling by Shooting a Raycast into the scene. If it hits something grappable continue with</span>
-        <span class="com">/// calculations. Otherwise revert.</span>
-        <span class="com">/// &lt;/summary&gt;</span>
-        <span class="com">/// &lt;param name="obj"&gt;&lt;/param&gt;</span>
-        <span class="key">private</span> <span class="key">void</span> StartGrapple(InputAction.CallbackContext obj)
-        {
-            <span class="key">if</span>(UIManager.Instance.HasActiveElements) <span class="key">return</span>;
-            <span class="key">if</span> (grapplingTimer &gt; 0) <span class="key">return</span>;
-            <span class="key">if</span> (!_playerEnergy.Use(energyCost)) <span class="key">return</span>;
-            
-            grappling = <span class="key">true</span>;
-            _freeze = <span class="key">true</span>;
-        
-            startGrapple.Play();
-            
-            RaycastHit hit;
-            <span class="key">if</span> (Physics.Raycast(camera.position, camera.forward, <span class="key">out</span> hit, maxGrappleDistance, whatIsGrappable))
-            {
-                grapplePoint = hit.point;
-                _isGrappable = <span class="key">true</span>;
-                Debug.Log(<span class="str">"Collider hit"</span> , hit.collider);
-                MakeDamage(hit.collider);
-                Invoke(nameof(ExecuteGrapple), grappleDelayTime);
-            }
-            <span class="key">else</span>
-            {
-                grapplePoint = camera.position + camera.forward * maxGrappleDistance;
-                _isGrappable = <span class="key">false</span>;
-                Debug.Log(<span class="str">"No Collider hit"</span>);
-                Invoke(nameof(StopGrapple), grappleDelayTime);
-            }
-        
-            lr_Left.enabled = <span class="key">true</span>;
-            lr_Left.SetPosition(1, grapplePoint);
-            lr_Right.enabled = <span class="key">true</span>;
-            lr_Right.SetPosition(1, grapplePoint);
-        
-        }
-        
-        <span class="key">private</span> <span class="key">void</span> MakeDamage(Collider raycastHit)
-        {
-            <span class="key">if</span> (raycastHit.TryGetComponent(<span class="key">out</span> BasicHealth health))
-            {
-                health.Damage(damage);
-            }
-        }
-        
-        <span class="com">/// &lt;summary&gt;</span>
-        <span class="com">/// disable everything.</span>
-        <span class="com">/// &lt;/summary&gt;</span>
-        <span class="key">private</span> <span class="key">void</span> StopGrapple()
-        {
-            _freeze = <span class="key">false</span>;
-            grappling = <span class="key">false</span>;
-            _isGrappable = <span class="key">false</span>;
-            
-                grapplingTimer = grapplingCd;
-        
-            lr_Left.enabled = <span class="key">false</span>;
-            lr_Right.enabled = <span class="key">false</span>;
-        }
-        
-        <span class="com">/// &lt;summary&gt;</span>
-        <span class="com">/// Jump to the calculated position</span>
-        <span class="com">/// &lt;/summary&gt;</span>
-        <span class="com">/// &lt;param name="targetPosition"&gt;&lt;/param&gt;</span>
-        <span class="com">/// &lt;param name="trajectoryHeight"&gt;&lt;/param&gt;</span>
-        <span class="key">private</span> <span class="key">void</span> JumpToPosition(Vector3 targetPosition, <span class="key">float</span> trajectoryHeight)
-        {
-            rb.velocity = CalculateJumpVelocity(transform.position, targetPosition, trajectoryHeight);
-        }
-        
-        
-        <span class="com">/// &lt;summary&gt;</span>
-        <span class="com">/// Execute the grappling </span>
-        <span class="com">/// &lt;/summary&gt;</span>
-        <span class="key">private</span> <span class="key">void</span> ExecuteGrapple()
-        {
-            _freeze = <span class="key">false</span>;
-            rb.constraints = RigidbodyConstraints.FreezeRotation;
-            <span class="com">//rotationfreeze is needed, because otherwise when the player hits the wall with its edge uncontrollable spinning ensues</span>
-        
-            
-            Vector3 lowestPoint = transform.position;
-            <span class="key">float</span> grapplePointRelativeYPos = grapplePoint.y - lowestPoint.y;
-            <span class="key">float</span> highestPointOnArc = grapplePointRelativeYPos + overshootYAxis;
-        
-            <span class="key">if</span> (grapplePointRelativeYPos &lt; 0) highestPointOnArc = overshootYAxis;
-            
-            JumpToPosition(grapplePoint, highestPointOnArc);
-        
-            Invoke(nameof(StopGrapple), 1f);
-        }
-        
-        
-        <span class="com">/// &lt;summary&gt;</span>
-        <span class="com">/// Calculate the jumpvelocity needed to reach the point. </span>
-        <span class="com">/// &lt;/summary&gt;</span>
-        <span class="com">/// &lt;param name="startpoint"&gt;&lt;/param&gt;</span>
-        <span class="com">/// &lt;param name="endPoint"&gt;&lt;/param&gt;</span>
-        <span class="com">/// &lt;param name="trajectoryHeight"&gt;&lt;/param&gt;</span>
-        <span class="com">/// &lt;returns&gt;&lt;/returns&gt;</span>
-        <span class="key">private</span> Vector3 CalculateJumpVelocity(Vector3 startpoint, Vector3 endPoint, <span class="key">float</span> trajectoryHeight)
-        {
-            <span class="key">float</span> gravity = Physics.gravity.y;
-            <span class="key">float</span> displacementY = endPoint.y - startpoint.y;
-            Vector3 displacementXZ = <span class="key">new</span> Vector3(endPoint.x - startpoint.x, 0f, endPoint.z - startpoint.z);
-            
-            Vector3 velocityY = Vector3.up * Mathf.Sqrt(-2 * gravity * trajectoryHeight);
-            Vector3 velocityXZ = displacementXZ / (Mathf.Sqrt(-2 * trajectoryHeight / gravity)
-                                                   + Mathf.Sqrt(2 * (displacementY - trajectoryHeight) / gravity));
-            
-            <span class="key">return</span> velocityXZ + velocityY;
-        
-        }
-        
-        <span class="key">private</span> <span class="key">void</span> OnDisable()
-        {
-            grappleAction.action.Disable();
-            grappleAction.action.performed -= StartGrapple;
-        }</code></pre>
+    }
+</code></pre>
                             </div><!--enemy-->
                         </div><!--section-->
-                    </fieldset><!--contribution-->
+                    </fieldset><!--contribution-->  
                     <fieldset>
                         <legend><h2>Conclusion</h2></legend>
                         <div class="section">
@@ -467,8 +450,9 @@
                                 really proud about this project.
                             </p>
                         </div>
-                    </fieldset>            
+                    </fieldset>    
             </div><!--wrapper-->
+        </div>
         </main>
         <footer></footer>
     </body>

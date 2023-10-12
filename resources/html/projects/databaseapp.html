@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
-    <head></head>
+    <head>
+        <meta charset="utf-8"/>
+        <title>DatabaseApp</title> 
+     </head>
     <body>
         <header>
             <div class="navbar">
@@ -31,33 +34,30 @@
               <fieldset>
                 <legend><h2>Concept</h2></legend>
                 <div class="section">
-                    <p>The concept behind the IP can be described as “Ori 
-                        and The Blind Forest meets Hollow Knight in the 
-                        Cold”, meaning the game is defined as strongly
-                        story-driven and visually stunning. The gameplay and 
-                        combat shall be easy to pick up, but also have a 
-                        high enough difficulty to not be boring.</p>
+                    <p>This project was constructed as the finishing exam for the Modul "Programmierung 3" in my third semester of college. It outlines a simple REST Webserver
+                        with a XAMPP hosted Database. The commmunication between Server and Clients is done via XML Files. The Libraries are imported via Gradle with Groovy.
+                    </p>
                   </div>
               </fieldset><!--Concept-->
               <fieldset>
                 <legend><h2>Description</h2></legend>
                 <div class="section">
-                    <p>Fallen Light is my attempt at creating my own IP 
-                        for a game. This was an assignment for the
-                        module “Mediengestaltung 3”. It was created during 
-                        my 5th semester and describes a world
-                        ravaged by ice and cold due to the stopping of the 
-                        planet’s rotation. After an apocalyptic
-                        event only known as the ‚Eclipse‘ the player wakes 
-                        up as the angel Azazel, who has no memories
-                        of what came before. It is now the player’s task to 
-                        find out what happened, who did it and
-                        why everyone calls him the ‚Firebringer‘.
+                    <h3>The Server</h3>
+                    <p>The Server is based on the Libraries Grizzly and Jakarta. The Connection to the XAMPP Database is handled via the mariadb-java-client form org.mariadb.jdbc. The Login
+                        credentials to the Database are handled via a Porperty File holding the information (not ideal i know, but this is how we learned it back then).
+                        The packaging into the fitting XML File Format is done with a Marshalling Transformer I wrote myself. The Database uses the Singleton Design Pattern for
+                        Global Access.
                     </p>
-                  </div>
+
+                    <div class="division"></div>
+                    <h3>The Client</h3>
+                    <p>The Client uses JavaFx to display its assets. The assets are stored in a FXML File, which is loaded on start.
+                         I used the Model-View-Controller Pattern for easier readability and modular construction. The user is able to delete, add and read the movies stored in the database
+                        and delivered by the server.</p>
+                </div><!--section-->
               </fieldset><!--Description-->
               <fieldset>
-                <legend><h2>Creative Process</h2></legend>
+                <legend><h2>Pictures</h2></legend>
                 <div class="section">
                     <p>I was the creative force behind Fallen Light. The 
                         general idea for this IP is mine. I created the
@@ -70,14 +70,21 @@
                         of the main characters: The player and a
                         traveling merchant.</p>
 
-                        <div class="double-grid">
+                        <div class="single-grid">
                             <figure>
-                                <img src="/resources/img/Angel_Coloured.png" alt="The Angel Azazel">
-                                <figcaption>The Angel Azazel drawn by Dennis Voigt and colored by Jessica Musch</figcaption>                            
+                                <div class="double-grid">
+                                    <img src="/resources/img/creatingmovie_1.png" alt="The Angel Azazel">
+                                <img src="/resources/img/creatingmovie_2.png" alt="The End">
+                                </div>                                
+                                <figcaption>Create a Movie and store it in the Database.</figcaption>                           
                             </figure>
                             <figure>
-                                <img src="/resources/img/Trader_Sketch.png" alt="The End">
-                                <figcaption>The Traveling Merchant Mangone drawn and colored by Jessica Musch</figcaption>
+                                <div class="double-grid">
+                                    <img src="/resources/img/deletingmove_1.png" alt="The Angel Azazel">
+                                <img src="/resources/img/deletingmovie_2.png" alt="The End">
+                                </div>                                
+                                <figcaption>Delete a movie in the Database from the Client</figcaption> 
+                                
                             </figure>
                         </div>
 
@@ -87,8 +94,9 @@
                         <div class="section">
                             
                             <p>
-                               This Project was the first time I could put my years of "for ever Game Mastering" Experience to use. With some guidance from my professor and help
-                               of some artist friends, this world really seemed to come together. And there is a silent hope, that one day I could see this game come to fruition.
+                               This was the first larger scale Project I did in college. I applied everything I learned during Programmierung 3 and the project came out pretty good.
+                               Nowadays there are quite a few things I would do differently like having two sperate fxml Files for the Client and not 2 entire Modules. This project
+                               now serves as a reminder to myself on how far my programming skills have come since I started. Hence why I want to display it here.
                             </p>
                         </div><!--section-->
                     </fieldset><!--conclusion-->            

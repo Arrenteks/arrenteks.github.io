@@ -14,13 +14,6 @@
     column-gap: 1vw;
 }
 
-fieldset{
-    border: 0.25vh solid;
-    background-color: aliceblue;
-    border-radius: 0.75vw;
-    
-}
-
 .double-grid{
     padding: 1.5vh;
     display: grid;
