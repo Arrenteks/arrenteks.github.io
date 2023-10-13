@@ -14,6 +14,16 @@ fieldset{
   border-color: #ffffff91;
   
 }
+.link{
+  text-align: center;
+}
+
+.link a{
+  color: white;
+  text-decoration: none;
+  background-color: #8dafd22e;
+  text-align: center;
+}
 
 h1, h2, h3, h4, p{
   color: white;
@@ -23,14 +33,21 @@ p{
   font-size: 13pt;
 }
 
+footer a{
+  text-align: center;
+  color:white;
+}
+
 /* Navbar container */
 .navbar {
     overflow: hidden;
     background-color: #8dafd22e;
+    text-align: center;
   }
   
   /* Links inside the navbar */
   .navbar a {
+    width: 50%;
     float: left;
     font-size: 16px;
     color: white;
@@ -41,8 +58,8 @@ p{
   
   /* The dropdown container */
   .dropdown {
-    float: left;
     overflow: hidden;
+    width: 50%;
   }
   
   /* Dropdown button */
@@ -59,32 +76,31 @@ p{
   
   /* Add a red background color to navbar links on hover */
   .navbar a:hover, .dropdown:hover .dropbtn {
-    background-color: red;
+    background-color: #1e3050;
   }
   
   /* Dropdown content (hidden by default) */
   .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    background-color: #8dafd22e;
+    min-width: 50%;
     z-index: 1;
   }
   
   /* Links inside the dropdown */
   .dropdown-content a {
+    width: 100%;
     float: none;
-    color: black;
+    color: white;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
-    text-align: left;
   }
   
-  /* Add a grey background color to dropdown links on hover */
-  .dropdown-content a:hover {
-    background-color: #ddd;
+  /* Add a blueish background color to dropdown links on hover */
+  .dropdown-content a:hover .dropdown-content a:hover{
+    background-color: #1e3050;
   }
   
   /* Show the dropdown menu on hover */
@@ -97,6 +113,7 @@ p{
     margin-left: auto;
     
     max-width: 1500px;
+    min-height: 850px;
     padding-right: 10px;
     padding-left: 10px;
   }
@@ -108,6 +125,64 @@ p{
     margin-bottom: 5vh;
     background-color: #ffffff91;
     border-radius: 12px;
+}
+
+.typing_container{
+  text-align: center;
+}
+
+.typing_container .typing{
+  font-size: 36px;
+  min-height: 10vh;
+  color: white;
+  line-height: 10vh;
+}
+
+
+.dropbtn {
+  background-color: #8dafd22e;
+  color: white;
+  padding: 16px;
+  font-size: 20px;
+  border: none;
+}
+
+/* The container <div> - needed to position the dropup content */
+.dropup {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropup content (Hidden by Default) */
+.dropup-content {
+  display: none;
+  position: absolute;
+  bottom: 50px;
+  background-color: #8dafd22e;
+  min-width: 160px;
+  z-index: 1;
+}
+
+/* Links inside the dropup */
+.dropup-content a {
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropup-content a:hover{
+  background-color: #1e3050;
+}
+
+/* Show the dropup menu on hover */
+.dropup:hover .dropup-content {
+  display: block;
+}
+
+/* Change the background color of the dropup button when the dropup content is shown */
+.dropup:hover .dropbtn {
+  background-color: #1e3050;
 }
 
 .enemy img{
@@ -143,76 +218,3 @@ pre.cscode {margin:0em; overflow:auto; background-color:#ffffff; text-wrap: wrap
 .cscode .key {color:#0000ff;}
 .cscode .com {color:#008000;}
 .cscode .str {color:#a31515;}
-
-.cycle-wrapper{
-	width: 80%;
-	position: relative;
-	margin: 110px auto 0 auto;
-	font-family: 'Bree Serif';
-	padding: 10px;
-  background-color:#efcd8e;
-}
-.rw-sentence{
-	margin: 0;
-	text-align: left;
-	text-shadow: 1px 1px 1px rgba(255,255,255,0.8);
-}
-.rw-sentence span{
-	color: #444;
-	font-size: 200%;
-	font-weight: normal;
-}
-.rw-words{
-	display: inline;
-	text-indent: 10px;
-}
-.rw-words-1 span{
-	position: absolute;
-	opacity: 0;
-	overflow: hidden;
-	color: #6b969d;
-	-webkit-animation: rotateWord 18s linear infinite 0s;
-	-ms-animation: rotateWord 18s linear infinite 0s;
-	animation: rotateWord 18s linear infinite 0s;
-}
-.rw-words-1 span:nth-child(2) { 
-    -webkit-animation-delay: 3s; 
-	-ms-animation-delay: 3s; 
-	animation-delay: 3s; 
-	color: #6b889d;
-}
-.rw-words-1 span:nth-child(3) { 
-    -webkit-animation-delay: 6s; 
-	-ms-animation-delay: 6s; 
-	animation-delay: 6s; 
-	color: #6b739d;	
-}
-
-
-@-webkit-keyframes rotateWord {
-    0% { opacity: 0; }
-    2% { opacity: 0; -webkit-transform: translateY(-30px); }
-	5% { opacity: 1; -webkit-transform: translateY(0px);}
-    17% { opacity: 1; -webkit-transform: translateY(0px); }
-	20% { opacity: 0; -webkit-transform: translateY(30px); }
-	80% { opacity: 0; }
-    100% { opacity: 0; }
-}
-@-ms-keyframes rotateWord {
-    0% { opacity: 0; }
-    2% { opacity: 0; -ms-transform: translateY(-30px); }
-	5% { opacity: 1; -ms-transform: translateY(0px);}
-    17% { opacity: 1; -ms-transform: translateY(0px); }
-	20% { opacity: 0; -ms-transform: translateY(30px); }
-	80% { opacity: 0; }
-    100% { opacity: 0; }
-}
-@keyframes rotateWord {
-    0% { opacity: 0; }
-    2% { opacity: 0; -webkit-transform: translateY(-30px); transform: translateY(-30px); }
-	5% { opacity: 1; -webkit-transform: translateY(0px); transform: translateY(0px);}
-    17% { opacity: 1; -webkit-transform: translateY(0px); transform: translateY(0px); }
-	20% { opacity: 0; -webkit-transform: translateY(30px); transform: translateY(30px); }
-	80% { opacity: 0; }
-    100% { opacity: 0; }
-}

@@ -1,44 +1,47 @@
 <!DOCTYPE html>
 <html>
-    <head></head>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Welcome to my Portfolio</title> 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    </head>
     <body>
-        <header>
-            <div class="navbar">
-                <a href="./resources/html/about_me.html">About Me</a>
-                <a href="#news">News</a>
-                <div class="dropdown">
-                    <button class="dropbtn">Dropdown
-                        <i class="fa fa-caret-down"></i>
-                    </button>
-                    <div class="dropdown-content">
-                        <a href="#">Link 1</a>
-                        <a href="#">Link 2</a>
-                        <a href="#">Link 3</a>
-                    </div><!--dropdown-content-->           
-                </div><!--dropdown-->
-            </div><!--navbar-->
-        </header>
+        <header></header>
         <main>
             <div class="wrapper">
                 <div class="double-grid">
-                    <section class="cycle-wrapper">
-                        <h2 class="rw-sentence">
-                            
-                            <div class="rw-words rw-words-1">
-                                <span>Programmer</span>
-                                <span>Game Developer</span>
-                                <span>Game Designer</span>
-                            </div>
-                        </h2>
-                    </section>
-                </div>
-                
-            </div>
-            
+                    <div class="typing_container">
+                        <h1>Hey There! I am Daniel and I am a</h1>
+                        <div class="division"></div>
+                        <div class="typing"></div>
+                        <div class="division"></div>
+                        <h2>Welcome to my Portfolio</h2>
+                    </div><!--typing_container-->
+                    <div class="enemy">
+                        <img src="/resources/img/daniel_adam.JPG" alt="Me">
+                    </div><!--enemy-->
+                    <div class="dropup">
+                        <button class="dropbtn">My Projects</button>
+                        <div class="dropup-content">
+                            <a href="/resources/html/game_development.html">Game Development</a>
+                            <a href="/resources/html/programming.html">Programming</a>
+                            <a href="/resources/html/game_design.html">Game Design</a>
+                            <a href="/resources/html/other.html">Other</a>
+                        </div><!--dropup-content-->
+                    </div><!--dropup-->            
+                    <div class="link">
+                        <h2>Want to know more about me?</h2>
+                        <a href="/resources/html/about_me.html" style="padding: 10px;">Click Here</a>  
+                    </div><!--link-->     
+                </div><!--double-grid-->            
+            </div><!--wrapper-->            
         </main>
-        <footer></footer>
+        <footer>
+            <a href="resources/html/impressum.html">Impressum | Privacy Policy</a>
+        </footer>
     </body>
     <link rel="stylesheet" href="./resources/css/style.css">
     <link rel="stylesheet" href="./resources/css/grid.css">
+    <script src="/resources/js/typing.js"></script>
 </html>
 
