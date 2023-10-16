@@ -41,3 +41,25 @@
     margin-right: auto;
     display: block;
 }
+
+/* Mobile Styles */
+@media(max-width: 1280px) { /* Änderung bei 1280px Abmessung des Empfängerbildschirms */
+    .triple-grid{
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .double-grid{
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+
+}
+
+@media(max-width: 850px) {/* Änderungen bei 850px Abmessung des Empfängerbildschirms*/
+    .triple-grid{
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+
+    .double-grid{
+        grid-template-columns: repeat(0, minmax(0, 1fr));
+    }
+}

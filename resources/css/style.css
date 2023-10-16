@@ -107,6 +107,10 @@ footer a{
   .dropdown:hover .dropdown-content {
     display: block;
   }
+  
+  #hamburger-icon{
+    display: none;
+  }
 
   .wrapper{
     margin-right: auto;
@@ -218,3 +222,89 @@ pre.cscode {margin:0em; overflow:auto; background-color:#ffffff; text-wrap: wrap
 .cscode .key {color:#0000ff;}
 .cscode .com {color:#008000;}
 .cscode .str {color:#a31515;}
+
+@media(max-width: 850px) {/* Änderungen bei 850px Abmessung des Empfängerbildschirms*/
+  #hamburger-icon{
+    margin: auto 0;
+    display: none;
+    cursor: pointer;
+    align-items: center;
+  }
+
+  #hamburger-icon div {
+    width: 35px;
+    height: 3px;
+    background-color: white;
+    margin: 6px 0;
+    transition: 0.4s;
+  }
+  
+  .open .bar1 {
+    -webkit-transform: rotate(-45deg) translate(-6px, 6px);
+    transform: rotate(-45deg) translate(-6px, 6px);
+  }
+  
+  .open .bar2 {
+    opacity: 0;
+  }
+  
+  .open .bar3 {
+    -webkit-transform: rotate(45deg) translate(-6px, -8px);
+    transform: rotate(45deg) translate(-6px, -8px);
+  }
+
+  nav ul{
+    list-style: none;
+    height: 100%;
+    display:flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  nav ul a{
+    color: white;
+  }
+
+  nav ul li{
+    padding: 5px;
+    margin-left: 10px;
+  }
+
+  nav ul li:hover{
+    transform: scale(1,1);
+    transition: 0.3s;
+  }
+
+  .mobile-menu{
+    display:none;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    height: calc(100vh - 50px);
+    width: 100%;
+    text-align: center;
+  }
+
+  .open .mobile-menu{
+    display: contents;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .mobile-menu li{
+    margin-bottom: 10px;
+  }
+
+  .navbar{
+    display: none;
+  }
+
+  #hamburger-icon{
+    display: block;
+  }
+}
+
+
+
+
