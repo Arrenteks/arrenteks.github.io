@@ -5,6 +5,9 @@
 
 body{
   background-color: #030a17f5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 fieldset{
@@ -31,6 +34,14 @@ h1, h2, h3, h4, p{
 
 p{
   font-size: 13pt;
+}
+
+main{
+  min-height: 90%;
+}
+
+footer{
+  margin-top: auto;
 }
 
 footer a{
@@ -113,11 +124,11 @@ footer a{
   }
 
   .wrapper{
-    margin-right: auto;
-    margin-left: auto;
+    margin-right: 5%;
+    margin-left: 5%;
     
-    max-width: 1500px;
-    min-height: 850px;
+    max-width: 100%;
+    min-height: 100%;
     padding-right: 10px;
     padding-left: 10px;
   }
@@ -132,6 +143,7 @@ footer a{
 }
 
 .typing_container{
+  min-width: 100%;
   text-align: center;
 }
 
@@ -199,6 +211,21 @@ footer a{
 }
 
 .enemy figcaption{
+  margin-top: 0.5vh;
+  text-align: center;
+}
+
+
+.indexcontainer img{
+  margin-top: 1vh;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 25px;
+  max-width: 90%;
+}
+
+.indexcontainer figcaption{
   margin-top: 0.5vh;
   text-align: center;
 }
@@ -303,6 +330,27 @@ pre.cscode {margin:0em; overflow:auto; background-color:#ffffff; text-wrap: wrap
   #hamburger-icon{
     display: block;
   }
+
+  .typing_container .typing{
+    font-size: 36px;
+    min-height: 5vh;
+    color: white;
+    line-height: 5vh;
+  }
+
+  .indexcontainer img{
+    min-height: 65vh;
+    width: auto;
+  }
+
+  h1{
+    font-size: 50px;
+  }
+
+  h2{
+    font-size: 35px;
+  }
+  
 }
 
 
