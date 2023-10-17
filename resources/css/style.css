@@ -223,7 +223,7 @@ pre.cscode {margin:0em; overflow:auto; background-color:#ffffff; text-wrap: wrap
 .cscode .com {color:#008000;}
 .cscode .str {color:#a31515;}
 
-@media(max-width: 850px) {/* Änderungen bei 850px Abmessung des Empfängerbildschirms*/
+@media(max-width: 1000px) {/* Änderungen bei 850px Abmessung des Empfängerbildschirms*/
   #hamburger-icon{
     margin: auto 0;
     display: none;
