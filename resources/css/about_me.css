@@ -191,3 +191,17 @@
 .content > ul > li{
   color: white;
 }
+
+@media(max-width: 1000px) {
+  .inner-grid-item ul li{
+    margin-top: 1vh;
+  }
+
+
+  .inner-grid-item ul li a{
+    width: 250px;
+    height: 250px;
+    line-height: 250px;
+    font-size: 100px;
+  }
+}

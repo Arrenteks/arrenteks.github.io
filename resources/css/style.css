@@ -15,7 +15,15 @@ fieldset{
   background-color: #8dafd22e;
   border-radius: 0.75vw;
   border-color: #ffffff91;
-  
+  margin-top: 2vh;
+}
+
+figcaption{
+  color: white;
+}
+
+fieldset img{
+  border-radius: 25px;
 }
 .link{
   text-align: center;
@@ -244,7 +252,7 @@ footer a{
   text-align: center;
 }
 
-pre.cscode {margin:0em; overflow:auto; background-color:#ffffff; text-wrap: wrap; text-align: left; padding: 0%;}
+pre.cscode {margin:0em; overflow:auto; background-color:#ffffff; text-wrap: wrap; text-align: left; padding: 0%; border-radius: 5px;}
 .cscode code {font-family:Consolas,"Courier New",Courier,Monospace; font-size:10pt; color:#000000;}
 .cscode .key {color:#0000ff;}
 .cscode .com {color:#008000;}
@@ -339,8 +347,8 @@ pre.cscode {margin:0em; overflow:auto; background-color:#ffffff; text-wrap: wrap
   }
 
   .indexcontainer img{
-    min-height: 65vh;
-    width: auto;
+    min-height: 50vh;
+    min-width: auto;
   }
 
   h1{
@@ -348,8 +356,44 @@ pre.cscode {margin:0em; overflow:auto; background-color:#ffffff; text-wrap: wrap
   }
 
   h2{
-    font-size: 35px;
+    font-size: 40px;
   }
+
+  h3, h4{
+    font-size: 30px;
+  }
+
+
+  p{
+    font-size: 25px;
+  }
+
+  figcaption{
+    font-size: 20px;
+  }
+
+  li{
+    font-size: 25px;
+  }
+
+  .dropup{
+    margin-top: 5vh;
+    min-width: 160px;
+    margin-bottom: 5vh;
+  }
+
+  .dropup-content{
+     min-width: inherit;
+    font-size: 40px;
+    max-width: 240px;
+    position: static;
+  }
+
+  .dropbtn{
+    font-size: 40px;
+  }
+
+  .cscode code {font-size:16pt;}
   
 }
 

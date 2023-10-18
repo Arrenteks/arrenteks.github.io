@@ -42,6 +42,15 @@
     display: block;
 }
 
+.double-inner-grid{
+    padding: 1.5vh;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: center;
+    column-gap: 1vw;
+    justify-items: center;
+}
+
 /* Mobile Styles */
 @media(max-width: 1280px) { /* Änderung bei 1280px Abmessung des Empfängerbildschirms */
     .triple-grid{
