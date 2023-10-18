@@ -3,6 +3,10 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
+a{
+  color: white;
+}
+
 body{
   background-color: #030a17f5;
   min-height: 100vh;
@@ -347,33 +351,32 @@ pre.cscode {margin:0em; overflow:auto; background-color:#ffffff; text-wrap: wrap
   }
 
   .indexcontainer img{
-    min-height: 50vh;
     min-width: auto;
   }
 
   h1{
-    font-size: 50px;
+    font-size: 50pt;
   }
 
   h2{
-    font-size: 40px;
+    font-size: 40pt;
   }
 
   h3, h4{
-    font-size: 30px;
+    font-size: 30pt;
   }
 
 
   p{
-    font-size: 25px;
+    font-size: 25pt;
   }
 
   figcaption{
-    font-size: 20px;
+    font-size: 20pt;
   }
 
   li{
-    font-size: 25px;
+    font-size: 25pt;
   }
 
   .dropup{
@@ -384,13 +387,13 @@ pre.cscode {margin:0em; overflow:auto; background-color:#ffffff; text-wrap: wrap
 
   .dropup-content{
      min-width: inherit;
-    font-size: 40px;
+    font-size: 40pt;
     max-width: 240px;
     position: static;
   }
 
   .dropbtn{
-    font-size: 40px;
+    font-size: 40pt;
   }
 
   .cscode code {font-size:16pt;}
