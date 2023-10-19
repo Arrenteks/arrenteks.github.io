@@ -20,6 +20,23 @@
                     </div><!--dropdown-content-->           
                 </div><!--dropdown-->
             </div><!--navbar-->
+             <!--Navigation for Mobile-->
+             <div id="hamburger-icon" onclick="toggleMobileMenu(this)">
+                <div class="hamburger-inner">
+                    <div class="bar1"></div>
+                    <div class="bar2"></div>
+                    <div class="bar3"></div>
+                </div>
+                <nav>
+                    <ul class="mobile-menu">
+                        <li><a href="/resources/html/about_me.html">About Me</a></li>
+                        <li><a href="/resources/html/game_development.html">Game Development</a></li>
+                        <li><a href="/resources/html/programming.html">Programming</a></li>
+                        <li><a href="/resources/html/game_design.html">Game Design</a></li> 
+                        <li><a href="/resources/html/other.html">Other</a></li>    
+                    </ul><!--mobile-menu-->
+                </nav>
+            </div><!--#hamburger-icon-->
         </header>
         <main>
             <div class="wrapper">
@@ -89,4 +106,5 @@
     </body>
     <link rel="stylesheet" href="/resources/css/style.css">
     <link rel="stylesheet" href="/resources/css/grid.css">
+    <script src="/resources/js/hamburger.js"></script>
 </html>

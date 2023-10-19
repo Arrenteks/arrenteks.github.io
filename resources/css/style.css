@@ -45,7 +45,7 @@ h1, h2, h3, h4, p{
 }
 
 p{
-  font-size: 13pt;
+  font-size: 15pt;
 }
 
 main{
@@ -262,17 +262,29 @@ pre.cscode {margin:0em; overflow:auto; background-color:#ffffff; text-wrap: wrap
 .cscode .com {color:#008000;}
 .cscode .str {color:#a31515;}
 
-@media(max-width: 1000px) {/* Änderungen bei 850px Abmessung des Empfängerbildschirms*/
+@media screen and (max-width: 1000px) {/* Änderungen bei 850px Abmessung des Empfängerbildschirms*/
+
+  .navbar{
+    display: none;
+  }
+
   #hamburger-icon{
+    background-color: #8dafd22e;
+    border-radius: 1vw;
+    padding: 2px;
     margin: auto 0;
     display: none;
     cursor: pointer;
-    align-items: center;
   }
 
-  #hamburger-icon div {
-    width: 35px;
-    height: 3px;
+  .hamburger-inner{
+    padding: 1vh 0;
+    margin-left: 1vw;
+  }
+
+  .hamburger-inner div {
+    width: 5vw;
+    height: 0.3vh;
     background-color: white;
     margin: 6px 0;
     transition: 0.4s;
@@ -302,11 +314,17 @@ pre.cscode {margin:0em; overflow:auto; background-color:#ffffff; text-wrap: wrap
 
   nav ul a{
     color: white;
+    text-decoration: none;
+    font-size: 35pt;
   }
 
   nav ul li{
+    line-height: 7.5vw;
+    min-height: 7.5vw;
+    margin-top: 2px;
     padding: 5px;
-    margin-left: 10px;
+    text-decoration: none;
+    background-color: #8dafd22e;
   }
 
   nav ul li:hover{
@@ -329,14 +347,6 @@ pre.cscode {margin:0em; overflow:auto; background-color:#ffffff; text-wrap: wrap
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-  }
-
-  .mobile-menu li{
-    margin-bottom: 10px;
-  }
-
-  .navbar{
-    display: none;
   }
 
   #hamburger-icon{
@@ -371,12 +381,14 @@ pre.cscode {margin:0em; overflow:auto; background-color:#ffffff; text-wrap: wrap
     font-size: 25pt;
   }
 
+  
   figcaption{
     font-size: 20pt;
   }
 
   li{
     font-size: 25pt;
+    color: white;
   }
 
   .dropup{
@@ -396,7 +408,7 @@ pre.cscode {margin:0em; overflow:auto; background-color:#ffffff; text-wrap: wrap
     font-size: 40pt;
   }
 
-  .cscode code {font-size:16pt;}
+  .cscode code {font-size:9pt;}
   
 }
 

@@ -1,7 +1,7 @@
   /* The actual timeline (the vertical ruler) */
   .timeline {
     position: relative;
-    max-width: 1200px;
+    max-width: 500vw;
     margin: 0 auto;
   }
   
@@ -9,7 +9,7 @@
   .timeline::after {
     content: '';
     position: absolute;
-    width: 6px;
+    width: 0.3vw;
     background-color: #ffffff91;
     top: 0;
     bottom: 0;
@@ -19,7 +19,7 @@
   
   /* Container around content */
   .container {
-    padding: 10px 40px;
+    padding: 4px 40px;
     position: relative;
     background-color: inherit;
     width: 50%;
@@ -133,12 +133,12 @@
   }
 
   .inner-grid-item ul a{
-    width: 120px;
-    height: 120px;
+    width: 7vw ;
+    height: 7vw;
     background-color: #fff;
     text-align: center;
-    line-height: 120px;
-    font-size: 50px;
+    line-height: 7vw;
+    font-size: 36pt;
     display: block;
     border-radius: 50%;
     position: relative;
@@ -203,6 +203,10 @@
     height: 250px;
     line-height: 250px;
     font-size: 100px;
+    text-align: center;
+  }
+
+  .inner-grid-item{
     text-align: center;
   }
 }
