@@ -123,16 +123,16 @@
     }
   }
 
-  .inner-grid-item ul{
+  .inner-grid-item-socials ul{
     display: inline;
   }
 
-  .inner-grid-item ul li{
+  .inner-grid-item-socials ul li{
     list-style: none;
-    margin-top: 10vh;
+    margin-top: 5vh;
   }
 
-  .inner-grid-item ul a{
+  .inner-grid-item-socials ul a{
     width: 7vw ;
     height: 7vw;
     background-color: #fff;
@@ -147,19 +147,19 @@
     z-index: 1;
   }
 
-  .inner-grid-item ul li a .icon {
+  .inner-grid-item-socials ul li a .icon {
     position: relative;
     color: #262626;
     transition: .5s;
     z-index: 3;
   }
 
-  .inner-grid-item ul li a:hover .icon {
+  .inner-grid-item-socials ul li a:hover .icon {
     color: #fff;
     transform: rotateY(360deg);
   }
   
-  .inner-grid-item ul li a:before {
+  .inner-grid-item-socials ul li a:before {
     content: "";
     position: absolute;
     top: 100%;
@@ -171,15 +171,15 @@
     z-index: 2;
   }
   
-  .inner-grid-item ul li a:hover:before {
+  .inner-grid-item-socials ul li a:hover:before {
     top: 0;
   }
   
-  .inner-grid-item ul li:nth-child(1) a:before{
+  .inner-grid-item-socials ul li:nth-child(1) a:before{
     background: #0077b5;
   }
 
-  .inner-grid-item ul li:nth-child(2) a:before{
+  .inner-grid-item-socials ul li:nth-child(2) a:before{
     background: #1e3050;
   }
 
