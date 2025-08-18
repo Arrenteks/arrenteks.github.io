@@ -1,4 +1,4 @@
-var words = ['Programmer', 'Game Developer', 'Game Designer'],
+var words = ['Gameplay Programmer', 'Software Architect', 'Storyteller'],
 part,
 i = 0,
 offset = 0,

@@ -1,14 +1,18 @@
 *{
   box-sizing: border-box;
   font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
 }
 
-a{
-  color: white;
+:root{
+  --textcolor: black;
+  --divisioncolor: green;
 }
+
+
 
 body{
-  background-color: #030a17f5;
+  background-color: whitesmoke;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -16,32 +20,22 @@ body{
 
 fieldset{
   border: 0.5vh solid;
-  background-color: #8dafd22e;
-  border-radius: 0.75vw;
-  border-color: #ffffff91;
-  margin-top: 2vh;
+  background-color: aqua;
+  border-radius: 1rem;
+  border-color: var(--divisioncolor);
 }
 
-figcaption{
-  color: white;
-}
 
 fieldset img{
-  border-radius: 25px;
+  border-radius: 1rem;
 }
 .link{
   text-align: center;
 }
 
 .link a{
-  color: white;
   text-decoration: none;
-  background-color: #8dafd22e;
   text-align: center;
-}
-
-h1, h2, h3, h4, p{
-  color: white;
 }
 
 p{
@@ -58,7 +52,6 @@ footer{
 
 footer a{
   text-align: center;
-  color:white;
 }
 
 /* Navbar container */
@@ -90,7 +83,6 @@ footer a{
     font-size: 16px;
     border: none;
     outline: none;
-    color: white;
     padding: 14px 16px;
     background-color: inherit;
     font-family: inherit; /* Important for vertical align on mobile phones */
@@ -115,7 +107,6 @@ footer a{
   .dropdown-content a {
     width: 100%;
     float: none;
-    color: white;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
@@ -136,8 +127,8 @@ footer a{
   }
 
   .wrapper{
-    margin-right: 5%;
-    margin-left: 5%;
+    margin-right: 10%;
+    margin-left: 10%;
     
     max-width: 100%;
     min-height: 100%;
@@ -148,9 +139,9 @@ footer a{
   .division {
     width: 100%;
     height: 6px;
+    background-color: var(--divisioncolor);
     margin-top: 5vh;
     margin-bottom: 5vh;
-    background-color: #ffffff91;
     border-radius: 12px;
 }
 
@@ -162,14 +153,12 @@ footer a{
 .typing_container .typing{
   font-size: 36px;
   min-height: 10vh;
-  color: white;
   line-height: 10vh;
 }
 
 
 .dropbtn {
   background-color: #8dafd22e;
-  color: white;
   padding: 16px;
   font-size: 20px;
   border: none;
@@ -193,7 +182,6 @@ footer a{
 
 /* Links inside the dropup */
 .dropup-content a {
-  color: white;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
@@ -313,7 +301,6 @@ pre.cscode {margin:0em; overflow:auto; background-color:#ffffff; text-wrap: wrap
   }
 
   nav ul a{
-    color: white;
     text-decoration: none;
     font-size: 35pt;
   }
@@ -356,7 +343,6 @@ pre.cscode {margin:0em; overflow:auto; background-color:#ffffff; text-wrap: wrap
   .typing_container .typing{
     font-size: 36px;
     min-height: 5vh;
-    color: white;
     line-height: 5vh;
   }
 
@@ -388,7 +374,6 @@ pre.cscode {margin:0em; overflow:auto; background-color:#ffffff; text-wrap: wrap
 
   li{
     font-size: 25pt;
-    color: white;
   }
 
   .dropup{
@@ -410,6 +395,14 @@ pre.cscode {margin:0em; overflow:auto; background-color:#ffffff; text-wrap: wrap
 
   .cscode code {font-size:9pt;}
   
+  .transition{
+    min-width: 5vh;
+    min-height: 5vh;
+
+    background-color: #a31515;
+  }
+
+
 }
 
 
