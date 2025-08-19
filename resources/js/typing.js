@@ -44,5 +44,6 @@ var wordflicker = function(){
 
 
 $(document).ready(function () {
+    console.log("Ready")
     wordflicker();
 });
