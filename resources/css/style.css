@@ -1,12 +1,14 @@
 *{
   box-sizing: border-box;
   font-family: Arial, Helvetica, sans-serif;
-  text-align: center;
 }
 
 :root{
   --textcolor: black;
-  --divisioncolor: green;
+  --divisioncolor: rgb(4, 160, 4);
+  --fieldsetbackground: rgba(226, 234, 226, 0.67);
+  --hovercolor: rgba(81, 156, 81, 0.67);
+  --linkcolor: rgb(81, 156, 81);
 }
 
 
@@ -20,22 +22,37 @@ body{
 
 fieldset{
   border: 0.5vh solid;
-  background-color: aqua;
+  background-color: var(--fieldsetbackground);
   border-radius: 1rem;
   border-color: var(--divisioncolor);
+  padding: 5%;
+  padding-top: 2%;
 }
 
 
 fieldset img{
   border-radius: 1rem;
 }
+
+fieldset a {
+  color: var(--linkcolor);
+}
+
+
 .link{
   text-align: center;
+  display: center;
 }
 
 .link a{
-  text-decoration: none;
+  display:inline-block;
+  align-items: center;
+  font-weight: 550;
+  text-decoration: underline;
   text-align: center;
+  font-size: 15pt;
+  background-color: var(--hovercolor);
+  border-radius: 1vh;
 }
 
 p{
@@ -66,7 +83,7 @@ footer a{
     width: 50%;
     float: left;
     font-size: 16px;
-    color: white;
+    color: var(--divisioncolor);
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
@@ -91,7 +108,7 @@ footer a{
   
   /* Add a red background color to navbar links on hover */
   .navbar a:hover, .dropdown:hover .dropbtn {
-    background-color: #1e3050;
+    background-color: var(--hovercolor);
   }
   
   /* Dropdown content (hidden by default) */
@@ -127,6 +144,7 @@ footer a{
   }
 
   .wrapper{
+    margin-top: 2.5%;
     margin-right: 10%;
     margin-left: 10%;
     
@@ -249,6 +267,59 @@ pre.cscode {margin:0em; overflow:auto; background-color:#ffffff; text-wrap: wrap
 .cscode .key {color:#0000ff;}
 .cscode .com {color:#008000;}
 .cscode .str {color:#a31515;}
+
+
+.tagholder{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tag{
+  width: 50px;
+  text-align: center;
+  align-content: center;
+  background-color: var(--hovercolor);
+  margin: 0.5vw;
+  min-width: fit-content;
+  padding: 4px;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 5vw;
+  height: 3vw;
+  border-radius: 1vh;
+  border-style: none;
+  font-weight: 550;
+} 
+
+.resumetile{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.resumetile > h3{
+  width: 20%;
+}
+
+.tilecontent{
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+
+.tilecontent > h3{
+  text-align: left;
+  margin-right: 4%;
+  margin-left: 2%;
+  padding: 1%;
+  width: 12%;
+}
+
+legend{
+  padding: 10px;
+}
+
+
 
 @media screen and (max-width: 1000px) {/* Änderungen bei 850px Abmessung des Empfängerbildschirms*/
 
@@ -401,6 +472,7 @@ pre.cscode {margin:0em; overflow:auto; background-color:#ffffff; text-wrap: wrap
 
     background-color: #a31515;
   }
+
 
 
 }
