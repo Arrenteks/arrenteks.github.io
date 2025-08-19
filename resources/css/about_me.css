@@ -130,6 +130,7 @@
   .inner-grid-item-socials ul li{
     list-style: none;
     margin-top: 5vh;
+    
   }
 
   .inner-grid-item-socials ul a{
@@ -152,6 +153,7 @@
     color: #262626;
     transition: .5s;
     z-index: 3;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   }
 
   .inner-grid-item-socials ul li a:hover .icon {

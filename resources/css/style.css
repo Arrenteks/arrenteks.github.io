@@ -3,12 +3,17 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
-a{
-  color: white;
+:root{
+  --textcolor: black;
+  --divisioncolor: rgb(4, 160, 4);
+  --fieldsetbackground: rgba(226, 234, 226, 0.67);
+  --hovercolor: rgba(81, 156, 81, 0.67);
+  --linkcolor: rgb(81, 156, 81);
 }
 
+
 body{
-  background-color: #030a17f5;
+  background-color: whitesmoke;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -16,32 +21,37 @@ body{
 
 fieldset{
   border: 0.5vh solid;
-  background-color: #8dafd22e;
-  border-radius: 0.75vw;
-  border-color: #ffffff91;
-  margin-top: 2vh;
+  background-color: var(--fieldsetbackground);
+  border-radius: 1rem;
+  border-color: var(--divisioncolor);
+  padding: 5%;
+  padding-top: 2%;
 }
 
-figcaption{
-  color: white;
-}
 
 fieldset img{
-  border-radius: 25px;
+  border-radius: 1rem;
 }
+
+fieldset a {
+  color: var(--linkcolor);
+}
+
+
 .link{
   text-align: center;
+  display: center;
 }
 
 .link a{
-  color: white;
-  text-decoration: none;
-  background-color: #8dafd22e;
+  display:inline-block;
+  align-items: center;
+  font-weight: 550;
+  text-decoration: underline;
   text-align: center;
-}
-
-h1, h2, h3, h4, p{
-  color: white;
+  font-size: 15pt;
+  background-color: var(--hovercolor);
+  border-radius: 1vh;
 }
 
 p{
@@ -53,53 +63,38 @@ main{
 }
 
 footer{
-  margin-top: auto;
+  margin-top: 1vw;
 }
 
 footer a{
   text-align: center;
-  color:white;
+  color: var(--linkcolor);
 }
 
 /* Navbar container */
 .navbar {
     overflow: hidden;
-    background-color: #8dafd22e;
+    background-color: var(--fieldsetbackground);
     text-align: center;
+    border-radius: 1vw;
+    border-style: solid;
+    border-color: var(--divisioncolor);
   }
   
   /* Links inside the navbar */
   .navbar a {
-    width: 50%;
+    width: 20%;
     float: left;
     font-size: 16px;
-    color: white;
+    color: var(--divisioncolor);
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
   }
   
-  /* The dropdown container */
-  .dropdown {
-    overflow: hidden;
-    width: 50%;
-  }
-  
-  /* Dropdown button */
-  .dropdown .dropbtn {
-    font-size: 16px;
-    border: none;
-    outline: none;
-    color: white;
-    padding: 14px 16px;
-    background-color: inherit;
-    font-family: inherit; /* Important for vertical align on mobile phones */
-    margin: 0; /* Important for vertical align on mobile phones */
-  }
-  
   /* Add a red background color to navbar links on hover */
   .navbar a:hover, .dropdown:hover .dropbtn {
-    background-color: #1e3050;
+    background-color: var(--hovercolor);
   }
   
   /* Dropdown content (hidden by default) */
@@ -115,7 +110,6 @@ footer a{
   .dropdown-content a {
     width: 100%;
     float: none;
-    color: white;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
@@ -136,8 +130,9 @@ footer a{
   }
 
   .wrapper{
-    margin-right: 5%;
-    margin-left: 5%;
+    margin-top: 2.5%;
+    margin-right: 10%;
+    margin-left: 10%;
     
     max-width: 100%;
     min-height: 100%;
@@ -148,9 +143,9 @@ footer a{
   .division {
     width: 100%;
     height: 6px;
+    background-color: var(--divisioncolor);
     margin-top: 5vh;
     margin-bottom: 5vh;
-    background-color: #ffffff91;
     border-radius: 12px;
 }
 
@@ -162,14 +157,12 @@ footer a{
 .typing_container .typing{
   font-size: 36px;
   min-height: 10vh;
-  color: white;
   line-height: 10vh;
 }
 
 
 .dropbtn {
   background-color: #8dafd22e;
-  color: white;
   padding: 16px;
   font-size: 20px;
   border: none;
@@ -193,7 +186,6 @@ footer a{
 
 /* Links inside the dropup */
 .dropup-content a {
-  color: white;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
@@ -262,6 +254,59 @@ pre.cscode {margin:0em; overflow:auto; background-color:#ffffff; text-wrap: wrap
 .cscode .com {color:#008000;}
 .cscode .str {color:#a31515;}
 
+
+.tagholder{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tag{
+  width: 50px;
+  text-align: center;
+  align-content: center;
+  background-color: var(--hovercolor);
+  margin: 0.5vw;
+  min-width: fit-content;
+  padding: 4px;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 5vw;
+  height: 3vw;
+  border-radius: 1vh;
+  border-style: none;
+  font-weight: 550;
+} 
+
+.resumetile{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.resumetile > h3{
+  width: 20%;
+}
+
+.tilecontent{
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+
+.tilecontent > h3{
+  text-align: left;
+  margin-right: 4%;
+  margin-left: 2%;
+  padding: 1%;
+  width: 12%;
+}
+
+legend{
+  padding: 10px;
+}
+
+
+
 @media screen and (max-width: 1000px) {/* Änderungen bei 850px Abmessung des Empfängerbildschirms*/
 
   .navbar{
@@ -269,7 +314,7 @@ pre.cscode {margin:0em; overflow:auto; background-color:#ffffff; text-wrap: wrap
   }
 
   #hamburger-icon{
-    background-color: #8dafd22e;
+    background-color: var(--fieldsetbackground);
     border-radius: 1vw;
     padding: 2px;
     margin: auto 0;
@@ -279,14 +324,15 @@ pre.cscode {margin:0em; overflow:auto; background-color:#ffffff; text-wrap: wrap
 
   .hamburger-inner{
     padding: 1vh 0;
-    margin-left: 1vw;
+    margin-left: 4vw;
   }
 
   .hamburger-inner div {
     width: 5vw;
     height: 0.3vh;
-    background-color: white;
+    background-color: black;
     margin: 6px 0;
+    margin-left: 1vw;
     transition: 0.4s;
   }
   
@@ -313,7 +359,6 @@ pre.cscode {margin:0em; overflow:auto; background-color:#ffffff; text-wrap: wrap
   }
 
   nav ul a{
-    color: white;
     text-decoration: none;
     font-size: 35pt;
   }
@@ -321,10 +366,10 @@ pre.cscode {margin:0em; overflow:auto; background-color:#ffffff; text-wrap: wrap
   nav ul li{
     line-height: 7.5vw;
     min-height: 7.5vw;
-    margin-top: 2px;
+    margin-top: 5px;
     padding: 5px;
     text-decoration: none;
-    background-color: #8dafd22e;
+    background-color: var(--fieldsetbackground);
   }
 
   nav ul li:hover{
@@ -356,60 +401,44 @@ pre.cscode {margin:0em; overflow:auto; background-color:#ffffff; text-wrap: wrap
   .typing_container .typing{
     font-size: 36px;
     min-height: 5vh;
-    color: white;
     line-height: 5vh;
   }
 
   .indexcontainer img{
     min-width: 100%;
   }
-
-  h1{
-    font-size: 50pt;
-  }
-
-  h2{
-    font-size: 40pt;
-  }
-
-  h3, h4{
-    font-size: 30pt;
-  }
-
-
-  p{
-    font-size: 25pt;
-  }
-
-  
-  figcaption{
-    font-size: 20pt;
-  }
-
-  li{
-    font-size: 25pt;
-    color: white;
-  }
-
-  .dropup{
-    margin-top: 5vh;
-    min-width: 160px;
-    margin-bottom: 5vh;
-  }
-
-  .dropup-content{
-    min-width: inherit;
-    font-size: 35pt;
-    max-width: 31vw;
-    position: static;
-  }
-
-  .dropbtn{
-    font-size: 40pt;
-  }
-
   .cscode code {font-size:9pt;}
   
+  .transition{
+    min-width: 5vh;
+    min-height: 5vh;
+
+    background-color: #a31515;
+  }
+
+  .tag{
+    width: 50px;
+    text-align: center;
+    align-content: center;
+    background-color: var(--hovercolor);
+    margin: 0.5vw;
+    min-width: fit-content;
+    padding: 4px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 2.5vw;
+    height: 3vw;
+    border-radius: 1vh;
+    border-style: none;
+    font-weight: 550;
+  }
+
+  .certificates > .tilecontent > h3{
+      margin-right: 5vw;
+     
+  }
+
+
 }
 
 
