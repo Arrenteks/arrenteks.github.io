@@ -41,6 +41,7 @@ fieldset a {
 .link{
   text-align: center;
   display: center;
+  margin-top: 5pt;
 }
 
 .link a{
