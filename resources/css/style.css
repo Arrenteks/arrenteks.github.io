@@ -7,6 +7,7 @@
   --textcolor: black;
   --divisioncolor: rgb(4, 160, 4);
   --fieldsetbackground: rgba(226, 234, 226, 0.67);
+  --navbackground: rgb(226, 234, 226);
   --hovercolor: rgba(81, 156, 81, 0.67);
   --linkcolor: rgb(81, 156, 81);
 }
@@ -306,6 +307,115 @@ legend{
   padding: 10px;
 }
 
+  .slidecontainer{
+    position: relative;
+  }
+
+  .slides{
+    display: none;
+  }
+
+  .slides img {
+    border-radius: 1rem 1rem 0 0;
+    max-width: 100%;
+  }
+
+  .slides:hover{
+    transform: scale(1.05);
+    cursor: pointer;
+    transition: .4s;
+    -webkit-mask-image: linear-gradient(black, transparent);
+    mask-image: linear-gradient(black, transparent);
+    margin: -1px;
+  }
+
+  .next,
+  .prev{
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -50px;
+    color: var(--divisioncolor);
+    font-weight: bold;
+    font-size: 20;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .next{
+    right: 0;
+    border-radius: 3px 0 0 3px;
+  }
+
+  .next:hover,
+  .prev:hover{
+    background-color: rgba(0, 0, 0, 0.6);
+    color: var(--hovercolor);
+  }
+
+  .caption-container{
+    text-align: center;
+    background-color: var(--hovercolor);
+    color: white;
+    border-radius: 0 0 1rem 1rem;
+  }
+
+  .caption-container > p {
+    margin-top: -4px;
+  }
+
+    .slides:hover ~ .caption-container{
+    transform: scale(1.05);
+    transition: .4s;
+  }
+
+  .sidenav{
+    height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    left: 0;
+    background-color: var(--navbackground); /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.4s; /* 0.4 second transition effect to slide in the sidenav */
+  }
+
+  /* The navigation menu links */
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: var(--linkcolor);
+  display: block;
+  transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  color: var(--hovercolor);
+}
+
+/* Position and style the close button (top right corner) */
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.hamburger{
+  font-size: 20pt;
+  margin-left: 2vw;
+  margin-top: 2vh;
+}
+
+
 
 
 @media screen and (max-width: 1000px) {/* Änderungen bei 850px Abmessung des Empfängerbildschirms*/
@@ -438,7 +548,6 @@ legend{
       margin-right: 5vw;
      
   }
-
 
 }
 
