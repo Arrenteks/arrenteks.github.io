@@ -6,32 +6,17 @@
     </head>
     <body>
         <header>
-            <!--Navigation for Dektop and Tablet-->
-            <div class="navbar">
-                <a href="/resources/html/about_me.html">About Me</a>
-                <a href="/resources/html/game_development.html">Game Development</a>
-                <a href="/resources/html/programming.html">Programming</a>
-                <a href="/resources/html/game_design.html">Game Design</a>
-                <a href="/resources/html/other.html">Other</a>
-            </div><!--navbar-->
-            <!--Navigation for Mobile-->
-            <div id="hamburger-icon" onclick="toggleMobileMenu(this)">
-                <div class="hamburger-inner">
-                    <div class="bar1"></div>
-                    <div class="bar2"></div>
-                    <div class="bar3"></div>
-                </div>
-                <nav>
-                    <ul class="mobile-menu">
-                        <li><a href="/resources/html/about_me.html">About Me</a></li>
-                        <li><a href="./game_development.html">Game Development</a></li>
-                        <li><a href="./programming.html">Programming</a></li>
-                        <li><a href="./game_design.html">Game Design</a></li> 
-                        <li><a href="./other.html">Other</a></li>    
-                    </ul><!--mobile-menu-->
-                </nav>
-            </div><!--#hamburger-icon-->
-        </header>
+    <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <a href="/resources/html/about_me.html">About Me</a>
+      <a href="/resources/html/game_development.html">Game Development</a>
+      <a href="/resources/html/programming.html">Programming</a>
+      <a href="/resources/html/game_design.html">Game Design</a>
+      <a href="/resources/html/other.html">Other</a>
+    </div>
+
+    <div onclick="openNav()" class="hamburger"><i class="fa fa-bars"></i></div>
+  </header>
         <main>
             <div class="wrapper">
                 <fieldset>
@@ -254,5 +239,5 @@
     <link rel="stylesheet" href="../css/about_me.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
     <script src="/resources/js/email.js"></script>
-    <script src="/resources/js/hamburger.js"></script>
+    <script src="/resources/js/nav.js"></script>
 </html>

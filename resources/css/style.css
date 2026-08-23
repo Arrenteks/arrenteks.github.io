@@ -410,12 +410,12 @@ legend{
 }
 
 .hamburger{
+  position: fixed;
   font-size: 20pt;
   margin-left: 2vw;
   margin-top: 2vh;
+  cursor: pointer;
 }
-
-
 
 
 @media screen and (max-width: 1000px) {/* Änderungen bei 850px Abmessung des Empfängerbildschirms*/
