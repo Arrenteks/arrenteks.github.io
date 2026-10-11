@@ -1,0 +1,22 @@
+*{
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/*Global, reusable variables*/
+:root{
+    --textcolor: black;
+    --backgroundcolor: whitesmoke;
+}
+
+body{
+    background-color: var(--backgroundcolor);
+    color: var(--textcolor);
+    display: flex;
+    flex-direction: column;
+}
+
+.wrapper{
+    margin: auto;
+    max-width: 1300px;
+}
