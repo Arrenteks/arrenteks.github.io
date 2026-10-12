@@ -7,16 +7,25 @@
 :root{
     --textcolor: black;
     --backgroundcolor: whitesmoke;
-}
-
-body{
-    background-color: var(--backgroundcolor);
-    color: var(--textcolor);
-    display: flex;
-    flex-direction: column;
+    --dividercolor: whitesmoke;
 }
 
 .wrapper{
     margin: auto;
+    display:flex;
     max-width: 1300px;
+}
+
+.welcome{
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+/*divider*/
+hr.divider{
+    border: .3vh solid var(--dividercolor);
 }

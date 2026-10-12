@@ -4,9 +4,9 @@
 /*Projects*/
 /*Flipping Cards*/
 .flip-card{
-    width: 200px;
-    height: 250px;
-    margin: 1rem auto;
+    width: 10cm;
+    height: 12cm;
+    margin: 1rem;
     perspective: 1000px;
     cursor: pointer;
 }
@@ -24,26 +24,55 @@
 }
 
 .flip-card-front,
-.flip-card-back {
+.flip-card-back{
   position: absolute;
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
   display: flex;
-  align-items: center;
-  justify-content: center;
   border-radius: 0.5rem;
 }
 
 .flip-card-front{
     background:wheat;
     border: 1px solid #e5e7eb;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 .flip-card-back{
     background: #8b5cf6;
     color: white;
     transform: rotateY(180deg);
+    flex-direction: column;
+    padding: 4%;
+}
+
+.flip-card-back-description{
+    margin-top: auto;
+}
+
+
+
+.flip-card-back-description .flip-card-tag-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.flip-card-tag{
+    border: .3vh solid #bbb;
+    padding: 2%;
+    margin: 0 1% 1% 1%;
+    border-radius: .5vw;
+}
+
+.flip-card-back-description i{
+    margin-right: .1cm;
+}
+
+.flip-card-back-icon{
+    margin-top: .1cm;
 }
 
 /*flipping cards*/
@@ -57,6 +86,7 @@
 .holo-card{
     width: 200px;
     height: 300px;
+    cursor:pointer;
     background: #111;
     display: flex;
     justify-content: center;
@@ -102,4 +132,78 @@
         transform: rotate(-45deg) translateY(100%);
     }
 
+/*holo cards*/
+
+/*Grid Background*/
+body {
+    
+    --grid-hue: 147; /* color of background/lines */
+    --grid-gap: 12px; /* size of the minor squares (line gaps) */
+    --grid-opacity: 0.15; /* opacity of crosses */
+    
+    --grid-border: 16px;
+    
+    --grid-light: hsl(var(--grid-hue), 50%, 92%);
+    --grid-dark: hsl(var(--grid-hue), 20%, 18%);
+    --grid-bg: light-dark( var(--grid-light), var(--grid-dark) );
+    
+    --grid-minor: light-dark( hsl(var(--grid-hue) 60% 20% / calc(var(--grid-opacity) * 0.125)), hsl(var(--grid-hue) 60% 80% / calc(var(--grid-opacity) * 0.125)) );
+    --grid-major: light-dark( hsl(var(--grid-hue) 60% 20% / calc(var(--grid-opacity) * 0.35)), hsl(var(--grid-hue) 60% 80% / calc(var(--grid-opacity) * 0.35)) );
+    --grid-cross: light-dark( hsl(var(--grid-hue) 60% 20% / var(--grid-opacity)), hsl(var(--grid-hue) 60% 80% / var(--grid-opacity)) );
+    
+    --paper-lines-y: linear-gradient(var(--grid-minor) 0px 1px,transparent 1px var(--grid-gap));
+    --paper-lines-x: linear-gradient(to right, var(--grid-minor) 0px 1px,transparent 1px var(--grid-gap));
+    --paper-lines-y-major: linear-gradient(var(--grid-major) 0px 1px,transparent 1px calc(var(--grid-gap) * 5));
+    --paper-lines-x-major: linear-gradient(to right, var(--grid-major) 0px 1px,transparent 1px calc(var(--grid-gap) * 5));
+    --paper-cross-y: linear-gradient(var(--grid-cross) 0px 1px,transparent 1px calc(var(--grid-gap) * 5));
+    --paper-cross-x: linear-gradient(to right, var(--grid-cross) 0px 1px,transparent 1px calc(var(--grid-gap) * 5));
+    --paper-cross-mask: radial-gradient(circle at center, transparent calc(var(--grid-gap)/2), var(--grid-bg) calc(var(--grid-gap)/2) 100%);
+    
+    --paper-gradient: 
+        var(--paper-lines-y), 
+        var(--paper-lines-x),
+        var(--paper-lines-y-major), 
+        var(--paper-lines-x-major), 
+        var(--paper-cross-mask),
+        var(--paper-cross-y), 
+        var(--paper-cross-x);
+    
+    background-size:
+        var(--grid-gap) var(--grid-gap), 
+        var(--grid-gap) var(--grid-gap), 
+        calc(var(--grid-gap) * 5) calc(var(--grid-gap) * 5),
+        calc(var(--grid-gap) * 5) calc(var(--grid-gap) * 5),
+        calc(var(--grid-gap) * 5) calc(var(--grid-gap) * 5),
+        calc(var(--grid-gap) * 5) calc(var(--grid-gap) * 5),
+        calc(var(--grid-gap) * 5) calc(var(--grid-gap) * 5);
+    
+    background-repeat: 
+        repeat, 
+        repeat, 
+        repeat, 
+        repeat, 
+        repeat,
+        repeat, 
+        repeat;
+    
+    background-position: 
+        var(--grid-border) var(--grid-border),
+        var(--grid-border) var(--grid-border),
+        var(--grid-border) var(--grid-border),
+        var(--grid-border) var(--grid-border),
+        calc(var(--grid-border) - var(--grid-gap) * 2.5) calc(var(--grid-border) - var(--grid-gap) * 2.5),
+        var(--grid-border) var(--grid-border),
+        var(--grid-border) var(--grid-border);
+    
+    background-color: var(--grid-bg);
+    background-image: var(--paper-gradient);
+    
+    box-shadow: inset 0 0 0 var(--grid-border) var(--grid-bg), inset 0 0 0 calc( var(--grid-border) + 1px) var(--grid-cross), inset 0 0 0 calc( var(--grid-border) + 1px) var(--bg2);
+    padding: var(--grid-border);
+    
+    min-width: 100svw;
+    min-height: 100svh;
+    
+    transition: --grid-gap 0.2s ease-in-out;
+}
 
