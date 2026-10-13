@@ -7,9 +7,13 @@
 
 /*Global, reusable variables*/
 :root{
+    /*colors*/
     --textcolor: black;
     --backgroundcolor: whitesmoke;
-    --dividercolor: whitesmoke;
+    --dividercolor: black;
+
+    /*speeds*/
+    --defaultSpeed: .3s; /*Default Speed for Animations and Transitions used on Page*/
 }
 
 /*Stretch html, body and main over the whole screen*/
@@ -28,14 +32,39 @@ html, body, main{
 /*Center Element for the landing page*/
 .welcome{
     display: flex;
+    margin:auto;
+    flex-direction: column;
     align-self: center;
     align-items: center;
     justify-content: center;
     text-align: center;
-    width: 100%;
+    max-width: 66%;
 }
 
-.welcome ul{
+.welcome p{
+    margin-top: .5rem;
+}
+
+/*Navigation*/
+@keyframes navAnimation{
+    from{
+        opacity: 0;
+        scale: .3;
+    }
+    to{
+        opacity: 1;
+        scale: 1;
+    }
+}
+
+/*Navbar*/
+nav{
+    animation-name: navAnimation;
+    animation-duration: 1s;
+}
+
+/*Unordered Navigation List*/
+nav ul{
     display: flex;
     padding: 0;
     margin: 2rem;
@@ -50,10 +79,11 @@ html, body, main{
             padding: .75rem 2rem;
             text-decoration: none;
             color: #262626;
-            font-size: 12pt;
             font-weight: 600;
-            transition: .5s;
+            transition: color var(--defaultSpeed);
             z-index: 1;
+
+            /*hidden before, before is the two bars floating into view in the animation*/
             &:before{
                 content: "";
                 position: absolute;
@@ -65,8 +95,9 @@ html, body, main{
                 border-bottom: 2px solid #262626;
                 transform: scaleY(2);
                 opacity: 0;
-                transition: .3s;
+                transition: var(--defaultSpeed);
             }
+            /*hidden after, after is the "background" in the animation*/
             &:after{
               content: '';
               position: absolute;
@@ -77,9 +108,10 @@ html, body, main{
               background-color: #262626;
               transform: scale(0);
               opacity: 0;
-              transition: .3s;
+              transition: var(--defaultSpeed);
               z-index: -1;
             }
+            /*on hover make before and after visible and scale them*/
             &:hover{
                 color:#fff;
                 &:before{
