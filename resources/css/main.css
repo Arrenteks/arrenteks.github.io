@@ -41,8 +41,39 @@ html, body, main{
     max-width: 66%;
 }
 
+@keyframes welcomeParagraphAnimation{
+    from{
+        opacity: 0;
+        margin-top: 5rem;
+    }
+    to{
+        opacity: 1;
+        margin-top: 1rem;
+    }
+}
+
+
+@keyframes welcomeHAnimation {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+.welcome h1{
+    animation-name: welcomeHAnimation;
+    animation-duration: 1.5s;
+    font-size: 2.5rem;
+}
+
 .welcome p{
-    margin-top: .5rem;
+    margin-top: 1rem;
+    animation-name: welcomeParagraphAnimation;
+    animation-duration: 1.5s;
+    animation-fill-mode: forwards;
+    opacity: 0;
 }
 
 /*Navigation*/
@@ -57,10 +88,14 @@ html, body, main{
     }
 }
 
+
 /*Navbar*/
 nav{
     animation-name: navAnimation;
     animation-duration: 1s;
+    animation-delay: 1.5s;
+    animation-fill-mode: forwards;
+    opacity: 0;
 }
 
 /*Unordered Navigation List*/

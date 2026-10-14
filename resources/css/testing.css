@@ -137,7 +137,7 @@
 /*Grid Background*/
 body {
     
-    --grid-hue: 147; /* color of background/lines */
+    --grid-hue: 100; /* color of background/lines */
     --grid-gap: 12px; /* size of the minor squares (line gaps) */
     --grid-opacity: 0.15; /* opacity of crosses */
     
