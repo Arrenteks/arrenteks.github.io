@@ -1,243 +1,210 @@
 <!DOCTYPE html>
 <html>
     <head>
-       <meta charset="utf-8"/>
-       <title>About Me</title> 
+        <meta charset="utf-8"/>
+        <title>About Me</title>
+        <link rel="stylesheet" href="../css/reset.css">
+        <link rel="stylesheet" href="../css/main.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.2/font/bootstrap-icons.min.css">
     </head>
     <body>
         <header>
-    <div id="mySidenav" class="sidenav">
-      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-      <a href="/resources/html/about_me.html">About Me</a>
-      <a href="/resources/html/game_development.html">Game Development</a>
-      <a href="/resources/html/programming.html">Programming</a>
-      <a href="/resources/html/game_design.html">Game Design</a>
-      <a href="/resources/html/other.html">Other</a>
-    </div>
-
-    <div onclick="openNav()" class="hamburger"><i class="fa fa-bars"></i></div>
-  </header>
+            <nav>
+              <ul>
+              <li><a href="../../index.html">Home</a></li>
+              <li><a href="./resources/html/about_me.html">About Me</a></li>
+              <li><a href="#">Projects</a></li>
+              </ul>
+            </nav>
+        </header>
         <main>
             <div class="wrapper">
-                <fieldset>
-                    <legend><h1>Hey there!</h1></legend>
-                    <div class="double-grid">
-                        <div class="grid-item">
-                            <p>Name: Daniel Adam</p>
-                            <p>Birthday: 10th May 2002</p>
-                            <p>Current Occupation: Student, looking for opportunities</p>
-                            <p>Location: Wernigerode</p>
-                            <br>
-                            <P>E-Mail: <a id="mlink" href='mailto:thisisafluke@thxbots.com'>&#x63;&#x6F;&#x6E;&#x74;&#x61;&#x63;&#x74;&#x2E;&#x64;&#x61;&#x6E;&#x69;&#x65;&#x6C;&#x61;&#x64;&#x61;&#x6D;&#x2E;&#x70;&#x6F;&#x72;&#x74;&#x66;&#x6F;&#x6C;&#x69;&#x6F;&#x40;&#x67;&#x6D;&#x61;&#x69;&#x6C;&#x2E;&#x63;&#x6F;&#x6D;</a></P>
-                        </div>
-                        <div class="grid-item">
-                            <img src="../img/daniel_adam.JPG" alt="Me in first semester">
-                        </div><!--grid-item-->
-                    </div><!--double-grid-->
-                </fieldset><!--biometrics-->
-                <fieldset>
-                    <legend><h2>Skills</h2></legend>
-                    <div class="skill" style="text-align: left;">
-                        <div class="tagholder">
-                            <div class="tag">Gameplay Programming</div>
-                            <div class="tag">Software Architecture</div>
-                            <div class="tag">Object-oriented Programming</div>
-                            <div class="tag">Tutoring</div>
-                            <div class="tag">Game Design</div>
-                            <div class="tag">Storytelling</div>
-                        </div><!--tagholder-->
-                        <div class="skill" style="text-align: left;">
-                            <h2>Spoken Languages</h2>
-                            <div class="tagholder">
-                                <div class="tag">German (Native Speaker)</div>
-                                <div class="tag">English (Fluent)</div>
-                                <div class="tag">Russian (Beginner)</div>
-                            </div><!--tagholder-->
-                    <div class="skill" style="text-align: left;">
-                        <h2>Programming Languages</h2>
-                        <div class="tagholder">
-                            <div class="tag">C#</div>
-                            <div class="tag">C++</div>
-                            <div class="tag">Java</div>
-                            <div class="tag">JavaScript</div>
-                            <div class="tag">Typescript</div>
-                        </div><!--tagholder-->
-                    <div class="skill" style="text-align: left;">
-                        <h2>Structure Languages</h2>
-                        <div class="tagholder">
-                            <div class="tag">SQL</div>
-                            <div class="tag">HTML</div>
-                            <div class="tag">XML</div>
-                            <div class="tag">JSON</div>
-                        </div><!--tagholder-->
-                    </div>
-                    <div class="skill" style="text-align: left;">
-                        <h2>Tools</h2>
-                        <div class="tagholder">
-                            <div class="tag">Unity Game Engine</div>
-                            <div class="tag">Visual Studio Code</div>
-                            <div class="tag">IntelliJ IDEA</div>
-                            <div class="tag">Rider</div>
-                            <div class="tag">Visual Studio</div>
-                            <div class="tag">AWS</div>
-                            <div class="tag">Git</div>
-                            <div class="tag">Eclipse</div>
-                            <div class="tag">FMOD</div>
-                        </div><!--tagholder-->
-                    </div>
-                    <div class="skill" style="text-align: left;">
-                        <h2>Frameworks</h2>
-                        <div class="tagholder">
-                            <div class="tag">Angular</div>
-                            <div class="tag">JXLS</div>
-                            <div class="tag">Spring Boot</div>
-                            <div class="tag">.NET</div>
-                        </div><!--tagholder-->
-                    </div>
-                    <div class="skill" style="text-align: left;">
-                        <h2>Plugins</h2>
-                        <div class="tagholder">
-                            <div class="tag">FMOD for Unity</div>
-                            <div class="tag">DOTween</div>
-                            <div class="tag">SaintsField</div>
-                        </div><!--tagholder-->
-                    </div>
-                </fieldset><!--Skills-->
-                <fieldset>
-                    <legend><h2>Education</h2></legend>
-                    <div class="resumetile">
-                        <div class="tilecontent">
-                            <h3>03/2025 - current</h3>
-                            <div>
-                                <h3>Medien- und Spielekonzeption (M.A.), Hochschule Harz</h3>
-                                <p>Media and Game Conception (M.A.) at Harz University of Applied Sciences, Wernigerode</p>
+                <div class="about-me-detail">
+                    <h2>Skills</h2>
+                    <div class="about-me-skills-container">
+                        <h3>General Skills</h3>
+                        <div class="about-me-skills">
+                            <div class="tag">
+                                <p>Gameplay Programming</p>
                             </div>
-                        </div>
-                        <div class="tilecontent">
-                            <h3>09/2020 - 02/2025</h3>
-                            <div>
-                                <h3>Medieninformatik (B.Sc.), Hochschule Harz - Abschlussnote: 1.8</h3>
-                                <p>Media Informatics (B.Sc.) at Harz University of Applied Sciences, Wernigerode - Finishing Grade: 1.8</p>
+                            <div class="tag">
+                                <p>Software Architecture</p>
                             </div>
-                        </div>
-                        <div class="tilecontent">
-                            <h3>08/2012 - 02/2025</h3>
-                            <div>
-                                <h3>Abitur, Friedrich-Schiller-Gymnasium Calbe/Saale - Abschlussnote: 1.6</h3>
-                                <p>Abitur, Friedrich-Schilller-Gymnasium Calbe/Saale - Finishing Grade: 1.6</p>
+                            <div class="tag">
+                                <p>Object-oriented Programming</p>
                             </div>
+                            <div class="tag">
+                                <p>Tutoring</p>
+                            </div>
+                            <div class="tag">
+                                <p>Game Design</p>
+                            </div>
+                            <div class="tag">
+                                <p>Storytelling</p>
+                            </div>
+                        </div><!--about-me-skills-->
+                        <h3>Programming Languages</h3>
+                        <div class="about-me-skills">
+                            <div class="tag">
+                                <p>C#</p>
+                            </div>
+                            <div class="tag">
+                                <p>Java</p>
+                            </div>
+                            <div class="tag">
+                                <p>C++</p>
+                            </div>
+                        </div><!--about-me-skills-->
+                        <h3>Tools</h3>
+                        <div class="about-me-skills">
+                            <div class="tag">
+                                <p>Unity Game Engine</p>
+                            </div>
+                            <div class="tag">
+                                <p>IntelliJ IDEA</p>
+                            </div>
+                            <div class="tag">
+                                <p>IntelliJ Rider</p>
+                            </div>
+                            <div class="tag">
+                                <p>Visual Studio Code</p>
+                            </div>
+                            <div class="tag">
+                                <p>Git</p>
+                            </div>
+                            <div class="tag">
+                                <p>FMOD</p>
+                            </div>
+                        </div><!--about-me-skills-->
+                        <h3>Plugins</h3>
+                        <div class="about-me-skills">
+                            <div class="tag">
+                                <p>FMOD for Unity</p>
+                            </div>
+                            <div class="tag">
+                                <p>DOTween</p>
+                            </div>
+                            <div class="tag">
+                                <p>SaintsField</p>
+                            </div>
+                        </div><!--about-me-skills-->
+                    </div><!--about-me-skills-container-->
+                </div>
+                <div class="about-me-detail">
+                    <h2>Experience</h2>
+                    <div class="about-me-point">
+                        <div class="about-me-point-left">
+                            <p>07/2024 - 03/2026</p>
+                        </div>
+                        <div class="about-me-point-right">
+                            <p>Working Student for Software Development at <a href="https://bws-group.de/">BWS Consulting Group GmbH</a></p>
+                        </div>
+                    </div>   
+                    <div class="about-me-point">
+                        <div class="about-me-point-left">
+                            <p>04/2024 - 06/2024</p>
+                        </div>
+                        <div class="about-me-point-right">
+                            <p>Software Development Intern at <a href="https://bws-group.de/">BWS Consulting Group GmbH</a></p>
                         </div>
                     </div>
-                </fieldset>
-                <fieldset>
-                    <legend><h2>Job Experiences</h2></legend>
-                    <div class="resumetile">
-                        <div class="tilecontent">
-                            <h3>07/2024 - 03/2026</h3>
-                            <div>
-                                <h3>BWS Consulting Group GmbH: Werkstudent als Software Developer für firmeninterne Software</h3>
-                                <p>BWS Consulting Group GmbH: Working Student as a Software Developer for in-house software</p>
-                            </div>
+                    <div class="about-me-point">
+                        <div class="about-me-point-left">
+                            <p>09/2023 - 12/2023</p>
                         </div>
-                        <div class="tilecontent">
-                            <h3>04/2024 - 06/2024</h3>
-                            <div>
-                                <h3>BWS Consulting Group GmbH: Praktikum als Software Developer für firmeninterne Software</h3>
-                                <p>BWS Consulting Group GmbH: Internship as a Software Developer for in-house software</p>
-                            </div>
-                        </div>
-                        <div class="tilecontent">
-                            <h3>09/2023 - 12/2023</h3>
-                            <div>
-                                <h3>Hochschule Harz: Korrektor für das Modul: Programmierung 3</h3>
-                                <p>Harz University of Applied Sciences: Corrector for the module: Programming 3</p>
-                            </div>
-                        </div>
-                        <div class="tilecontent">
-                            <h3>03/2023 - 07/2023</h3>
-                            <div>
-                                <h3>Hochschule Harz: Tutor für das Modul: Programmierung 2</h3>
-                                <p>Harz University of Applied Sciences: Tutoring the module: Programming 2</p>
-                            </div>
-                        </div>
-                        <div class="tilecontent">
-                            <h3>09/2022 - 12/2022</h3>
-                            <div>
-                                <h3>Hochschule Harz: Tutor für das Modul: Programmierung 1</h3>
-                                <p>Harz University of Applied Sciences: Tutoring the module: Programming 1</p>
-                            </div>
-                        </div>
-                        <div class="tilecontent">
-                            <h3>03/2022 - 02/2025</h3>
-                            <div>
-                                <h3>Hochschule Harz: Tutor für das Modul: Programmierung 2</h3>
-                                <p>Harz University of Applied Sciences: Tutoring the module: Programming 2</p>
-                            </div>
-                        </div>
-                        <div class="tilecontent">
-                            <h3>09/2021 - 12/2021</h3>
-                            <div>
-                                <h3>Hochschule Harz: Tutor für das Modul: Programmierung 1</h3>
-                                <p>Harz University of Applied Sciences: Tutoring the module: Programming 1</p>
-                            </div>
+                        <div class="about-me-point-right">
+                            <p>Corrector for Programming III at <a href="https://www.hs-harz.de/">Hochschule Harz</a></p>
                         </div>
                     </div>
-                </fieldset>
-                <fieldset>
-                    <legend><h1>Certificates</h1></legend>
-                        <div class="resumetile">
-                            <div class="tilecontent">
-                                <h3>Sololearn</h3>
-                            <div>
-                                <h3>C# Intermediate</h3>
-                                <p>Certificate ID: CC-MFOZSAZB</p>
-                            </div>
-                            </div>
+                    <div class="about-me-point">
+                        <div class="about-me-point-left">
+                            <p>03/2023 - 07/2023</p>
                         </div>
-                        <div class="resumetile">
-                            <div class="tilecontent">
-                                <h3>Sololearn</h3>
-                            <div>
-                                <h3>C++ Intermediate</h3>
-                                <p>Certificate ID: CC-T75CTBKK</p>
-                            </div>
-                            </div>
+                        <div class="about-me-point-right">
+                            <p>Tutor for Programming II at <a href="https://www.hs-harz.de/">Hochschule Harz</a></p>
                         </div>
-                        <div class="resumetile">
-                            <div class="tilecontent">
-                                <h3>Sololearn</h3>
-                            <div>
-                                <h3>Introduction into C++</h3>
-                                <p>Certificate ID: CC-6CQY6FBX</p>
-                            </div>
-                            </div>
+                    </div>
+                    <div class="about-me-point">
+                        <div class="about-me-point-left">
+                            <p>09/2022 - 12/2022</p>
                         </div>
-                    </fieldset><!--fieldset-socials-->
-                </fieldset>
-                <fieldset>
-                    <legend><h1>Social Media</h1></legend>
-                        <div class="grid-item">
-                            <div class="single-grid">
-                                <div class="inner-grid-item-socials">
-                                    <ul>
-                                        <li><a href="https://www.linkedin.com/in/daniel-adam-33a617256/"><i class="fab fa-linkedin-in icon"></i></a></li>
-                                        <li><a href="https://github.com/Arrenteks"><i class="fab fa-github-alt icon"></i></a></li>
-                                    </ul>
-                                </div><!--inner-grid-item-->
-                            </div><!--single-grid-->
-                        </div><!--grid-item-->
-                    </fieldset><!--fieldset-socials-->
-                </fieldset>    
+                        <div class="about-me-point-right">
+                            <p>Tutor for Programming I at <a href="https://www.hs-harz.de/">Hochschule Harz</a></p>
+                        </div>
+                    </div>
+                    <div class="about-me-point">
+                        <div class="about-me-point-left">
+                            <p>03/2022 - 07/2022</p>
+                        </div>
+                        <div class="about-me-point-right">
+                            <p>Tutor for Programming II at <a href="https://www.hs-harz.de/">Hochschule Harz</a></p>
+                        </div>
+                    </div>
+                    <div class="about-me-point">
+                        <div class="about-me-point-left">
+                            <p>09/2021 - 12/2021</p>
+                        </div>
+                        <div class="about-me-point-right">
+                             <p>Tutor for Programming I at <a href="https://www.hs-harz.de/">Hochschule Harz</a></p>
+                        </div>
+                    </div><!--about-me-point-->
+                </div><!--about-me-detail-->
+                <div class="about-me-detail">
+                    <h2>Education</h2>
+                    <div class="about-me-point">
+                        <div class="about-me-point-left">
+                            <p>since 03/2025</p>
+                        </div>
+                        <div class="about-me-point-right">
+                            <p>Media and Game Conception (M.A.) at <a href="https://www.hs-harz.de/">Hochschule Harz</a></p>
+                        </div>
+                    </div>
+                    <div class="about-me-point">
+                        <div class="about-me-point-left">
+                            <p>09/2020 - 02/2025</p>
+                        </div>
+                        <div class="about-me-point-right">
+                            <p>Media Informatics (B.Sc.) at <a href="https://www.hs-harz.de/">Hochschule Harz</a></p>
+                        </div>
+                    </div>
+                    <div class="about-me-point">
+                        <div class="about-me-point-left">
+                            <p>08/2012 - 06/2020</p>
+                        </div>
+                        <div class="about-me-point-right">
+                            <p>Abitur at <a href="https://gym-calbe.info/">Friedrich-Schiller-Gymnasium Calbe/Saale</a></p>
+                        </div><!--about-me-point-right-->
+                    </div><!--about-me-point-->
+                </div><!--about-me-detail-->
+                <div class="about-me-detail">
+                    <h2>Certificates</h2>
+                    <div class="about-me-point">
+                        <div class="about-me-point-left">
+                            <p>Sololearn</p>
+                        </div>
+                        <div class="about-me-point-right">
+                            <p>C# Intermediate ID: CC-MFOZSAZB</p>
+                        </div>
+                    </div>
+                    <div class="about-me-point">
+                        <div class="about-me-point-left">
+                            <p>Sololearn</p>
+                        </div>
+                        <div class="about-me-point-right">
+                            <p>C++ Intermediate ID: CC-T75CTBKK</p>
+                        </div>
+                    </div>
+                    <div class="about-me-point">
+                        <div class="about-me-point-left">
+                            <p>Sololearn</p>
+                        </div>
+                        <div class="about-me-point-right">
+                            <p>Introduction to C++ ID: Certificate ID: CC-6CQY6FBX</a></p>
+                        </div><!--about-me-point-right-->
+                    </div><!--about-me-point-->
+                </div><!--about-me-detail-->
             </div><!--wrapper-->
         </main>
-        <footer>
-            <a href="/resources/html/impressum.html">Impressum | Privacy Policy</a>
-        </footer>
+        <footer></footer>
     </body>
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/grid.css">
-    <link rel="stylesheet" href="../css/about_me.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
-    <script src="/resources/js/email.js"></script>
-    <script src="/resources/js/nav.js"></script>
 </html>
