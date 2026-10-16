@@ -10,7 +10,7 @@
     /*colors*/
     --textcolor: black;
     --backgroundcolor: whitesmoke;
-    --dividercolor: black;
+    --dividercolor: rgba(36, 36, 36, 0.315);
 
     /*speeds*/
     --defaultSpeed: .3s; /*Default Speed for Animations and Transitions used on Page*/
@@ -100,7 +100,7 @@ body {
     flex-direction: column;
     display: flex;
     max-width: 1300px;
-    height: 100%;
+    min-height: 100%;
 }
 
 /*Center Element for the landing page*/
@@ -239,23 +239,46 @@ nav ul{
 /*divider*/
 hr.divider{
     border: .3vh solid var(--dividercolor);
+    border-radius: .3rem;
+    width: 75%;
 }
 
 /*About Me*/
 /*About Me Details like Experience and Education*/
 .about-me-detail{
-    min-width: 66%;
+    width: 66%;
     display: flex;
     flex-direction: column;
-    margin: 2rem auto 0 auto;
+    margin: 2rem auto 2rem auto;
+
+    h2{
+        margin-bottom: 1rem;
+    }
+
+    .skills{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+        div{
+            min-width: 33%;
+            min-height: 25%;
+            margin-bottom: .5rem;
+        }
+        ul{
+            list-style: none;
+            padding: 0;
+
+            li{
+                margin-bottom: .5rem;
+            }
+        }
+   }
 }
 
 .about-me-point{
     display: flex;
-    flex-wrap: wrap;
     margin-top: 1rem;
-    text-align: center;
-    
 }
 
 .about-me-point-left{
@@ -263,26 +286,31 @@ hr.divider{
     margin-right: 6rem;
 }
 
-.about-me-point-right a{
+.about-me-point-right{
+
+    details{
+        margin: .5rem 0 0 2rem;
+        font-size: smaller;
+        max-width: 75%;
+        
+
+        ul{
+            margin-top: .25rem;
+        }
+
+        summary{
+            &:hover{
+                cursor: pointer;
+                color: green;
+            }
+        }
+    }
+
+    a{
     color: #262626;
+    }
 }
 
 .about-me-skills-container{
     margin-top: 1rem;
-}
-
-.about-me-skills{
-   display: flex;
-   flex-direction: row;
-   flex-wrap: wrap;
-   margin-top: 1rem;
-
-   .tag{
-    border: 2px solid;
-    border-radius: .5rem;
-    padding: .5rem;
-    margin: 0 1rem 1rem 0;
-    min-width: fit-content;
-    text-align: center;
-   }
 }
