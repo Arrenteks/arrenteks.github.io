@@ -134,3 +134,111 @@
 
 /*holo cards*/
 
+/*curtain-cards*/
+.curtain-card{
+    cursor: pointer;
+    position: relative;
+    width: 22rem;
+    height: 25rem;
+    margin: 0 auto;
+    background: #fff;
+    box-shadow: 0 15px 60px rgba(0, 0, 0, .5);
+    border-radius: 15px;
+    margin: 50px 0 50px 0;
+
+    .face{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+    }
+
+    .face.face-one{
+        box-sizing: border-box;
+        padding: 20px;
+
+        h2{
+            margin: 0;
+            padding: 0;
+            transform: translate(30%, 75%);
+        }
+
+        .content{
+            font-size: 1.2em;
+            margin: 0;
+            padding: 0 0 1em 0;
+            
+            img{
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+    }
+
+    .face.face-two{
+        transition: .5s;
+        border-radius: 15px;
+        height: 25%;
+        display: flex;
+        color: #fff;
+        flex-direction: column;
+        background-color: rgba(7, 80, 29, 0.5);
+        backdrop-filter: blur(5px);
+        
+
+        .icons{
+            transition: .5s;
+            transform: scale(0);
+            margin: auto 0 0 0;
+
+            .divider{
+                width: 90%;
+                background-color: #fff;
+            }
+        }
+
+        ul{
+            list-style: none;
+            padding: 1.5rem;
+        }
+    }
+
+    &:hover .face.face-two{
+        height: 75%;
+        border-radius: 0 0 15px 15px;
+    }
+
+    .face-two::before{
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 50%;
+        height: 100%;
+        border-radius: 15px 0 0 15px;
+    }
+
+    .face.face-two h2{
+        margin: 0;
+        padding: 0;
+        font-size: 2em;
+        transition: .5s;
+        text-shadow: 0 2px 5px rgba(0, 0, 0, .2);
+    }
+
+    &:hover .face.face-two{
+        
+        h2{
+            font-size: 2em;
+            transform: translate(5%, 5%);
+        }
+
+        .icons{
+            transform: scale(1);
+        }
+    }
+}
+
