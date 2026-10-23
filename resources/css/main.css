@@ -136,18 +136,84 @@ body {
     }
 }
 
-.welcome h1{
-    animation-name: welcomeHAnimation;
-    animation-duration: 1.5s;
-    font-size: 2.5rem;
-}
+.welcome{
 
-.welcome p{
-    margin-top: 1rem;
-    animation-name: welcomeParagraphAnimation;
-    animation-duration: 1.5s;
-    animation-fill-mode: forwards;
-    opacity: 0;
+        h1{
+        animation-name: welcomeHAnimation;
+        animation-duration: 1.5s;
+        font-size: 2.5rem;
+    }
+
+        p{
+        margin-top: 1rem;
+        animation-name: welcomeParagraphAnimation;
+        animation-duration: 1.5s;
+        animation-fill-mode: forwards;
+        opacity: 0;
+    }
+
+        ul{
+            margin: 2rem;
+            display: flex;
+            padding: 0;
+
+            li{
+                list-style: none;
+
+                a{
+                    position: relative;
+                    text-transform: uppercase;
+                    margin: 2rem 0;
+                    padding: .75rem 2rem;
+                    text-decoration: none;
+                    color: #262626;
+                    font-weight: 600;
+                    transition: color var(--defaultSpeed);
+                    z-index: 1;
+
+                    /*hidden before, before is the two bars floating into view in the animation*/
+                    &:before{
+                        content: "";
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        border-top: 2px solid #262626;
+                        border-bottom: 2px solid #262626;
+                        transform: scaleY(2);
+                        opacity: 0;
+                        transition: var(--defaultSpeed);
+                    }
+                    /*hidden after, after is the "background" in the animation*/
+                    &:after{
+                    content: '';
+                    position: absolute;
+                    top:2px;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-color: #262626;
+                    transform: scale(0);
+                    opacity: 0;
+                    transition: var(--defaultSpeed);
+                    z-index: -1;
+                    }
+                    /*on hover make before and after visible and scale them*/
+                    &:hover{
+                        color:#fff;
+                        &:before{
+                            transform: scaleY(1);
+                            opacity: 1;
+                        }
+                        &::after{
+                            transform: scaleY(1);
+                            opacity: 1;
+                        }
+                }
+            }
+        }
+    }
 }
 
 /*Navigation*/
@@ -165,76 +231,86 @@ body {
 
 /*Navbar*/
 nav{
-    animation-name: navAnimation;
-    animation-duration: 1s;
-    animation-delay: 1.5s;
-    animation-fill-mode: forwards;
-    opacity: 0;
-}
-
-/*Unordered Navigation List*/
-nav ul{
     display: flex;
-    padding: 0;
-    margin: 2rem;
-
-    li{
-        list-style: none;
+    flex-direction: row;
+    padding: 0 2rem 2rem 2rem;
+    
+        h1{
+            margin-top: auto;
+            margin-bottom: auto;
+        }
 
         a{
-            position: relative;
-            text-transform: uppercase;
-            margin: 2rem 0;
-            padding: .75rem 2rem;
             text-decoration: none;
             color: #262626;
-            font-weight: 600;
-            transition: color var(--defaultSpeed);
-            z-index: 1;
+        }
 
-            /*hidden before, before is the two bars floating into view in the animation*/
-            &:before{
-                content: "";
+
+        ul{
+        margin: auto 0 auto auto;
+        display: flex;
+        padding: 0;
+
+        li{
+            list-style: none;
+
+            a{
+                position: relative;
+                text-transform: uppercase;
+                margin: 2rem 0;
+                padding: .75rem 2rem;
+                text-decoration: none;
+                color: #262626;
+                font-weight: 600;
+                transition: color var(--defaultSpeed);
+                z-index: 1;
+
+                /*hidden before, before is the two bars floating into view in the animation*/
+                &:before{
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    border-top: 2px solid #262626;
+                    border-bottom: 2px solid #262626;
+                    transform: scaleY(2);
+                    opacity: 0;
+                    transition: var(--defaultSpeed);
+                }
+                /*hidden after, after is the "background" in the animation*/
+                &:after{
+                content: '';
                 position: absolute;
-                top: 0;
+                top:2px;
                 left: 0;
                 width: 100%;
                 height: 100%;
-                border-top: 2px solid #262626;
-                border-bottom: 2px solid #262626;
-                transform: scaleY(2);
+                background-color: #262626;
+                transform: scale(0);
                 opacity: 0;
                 transition: var(--defaultSpeed);
-            }
-            /*hidden after, after is the "background" in the animation*/
-            &:after{
-              content: '';
-              position: absolute;
-              top:2px;
-              left: 0;
-              width: 100%;
-              height: 100%;
-              background-color: #262626;
-              transform: scale(0);
-              opacity: 0;
-              transition: var(--defaultSpeed);
-              z-index: -1;
-            }
-            /*on hover make before and after visible and scale them*/
-            &:hover{
-                color:#fff;
-                &:before{
-                    transform: scaleY(1);
-                    opacity: 1;
+                z-index: -1;
                 }
-                &::after{
-                    transform: scaleY(1);
-                    opacity: 1;
+                /*on hover make before and after visible and scale them*/
+                &:hover{
+                    color:#fff;
+                    &:before{
+                        transform: scaleY(1);
+                        opacity: 1;
+                    }
+                    &::after{
+                        transform: scaleY(1);
+                        opacity: 1;
+                    }
                 }
             }
         }
     }
 }
+
+
 
 /*divider*/
 hr.divider{
