@@ -583,6 +583,10 @@ hr.divider{
             object-fit: contain;
             align-self: center;
         }
+
+        a{
+            color: #262626;
+        }
     }
     
     .voices-container{
