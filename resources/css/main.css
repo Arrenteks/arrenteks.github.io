@@ -20,6 +20,19 @@
 html, body, main{
     min-height: 100vh;
 }
+
+a{
+    .bi-github:hover{
+        color: #2DBA4E;
+    }
+
+    .bi-linkedin:hover{
+        color: #0a66c2;
+    }
+
+    color: gray;
+}
+
 /*Grid Background*/
 body {
     
@@ -141,20 +154,7 @@ footer{
         display: flex;
         justify-content: space-between;
         
-        font-size: 1.75rem;
-
-        a{
-            .bi-github:hover{
-                color: #2DBA4E;
-            }
-
-            .bi-linkedin:hover{
-                color: #0a66c2;
-            }
-
-            color: gray;
-        }
-        
+        font-size: 1.75rem;        
     }
 }
 
@@ -683,8 +683,19 @@ hr.divider{
                 height: 5rem;
             }
         }
+    }
+}
 
-    
+.socials{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    padding-right: 1rem;
+    font-size: 2.5rem;
+
+    ul{
+        list-style: none;
+        padding: 1rem;
     }
 }
 
