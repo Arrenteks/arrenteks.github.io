@@ -124,6 +124,38 @@ footer{
     justify-content: center;
     text-align: center;
     max-width: 66%;
+
+    span{
+        padding: .5rem;
+        background-color: #fff;
+        border-radius: .5rem;
+    }
+
+    p{
+        padding: 0 5rem 0 5rem;
+        line-height: 2.5rem;
+    }
+
+    .icons{
+        width: 20%;
+        display: flex;
+        justify-content: space-between;
+        
+        font-size: 1.75rem;
+
+        a{
+            .bi-github:hover{
+                color: #2DBA4E;
+            }
+
+            .bi-linkedin:hover{
+                color: #0a66c2;
+            }
+
+            color: gray;
+        }
+        
+    }
 }
 
 @keyframes welcomeParagraphAnimation{
@@ -361,6 +393,24 @@ hr.divider{
             }
         }
    }
+}
+
+.about-me-welcome{
+    display: flex;
+
+    div{
+        padding: 2rem;
+
+        h2{
+            margin-bottom: 1rem;
+        }
+    }
+
+    img{
+        margin: 0 2rem 2rem 2rem;
+        padding: 0 1rem;
+        height: 350px;
+    }
 }
 
 .about-me-point{
