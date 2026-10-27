@@ -7,18 +7,16 @@ function changeSlides(n){
 }
 
 function showSlides(n){
-    let i;
-    let slides = document.getElementsByClassName("slides");
-    let captionText = document.getElementById("caption")
+    let index;
+    let slides = document.getElementsByClassName("voices-container-upper");
 
     if(n < 1){slideIndex = slides.length;}
     if(n > slides.length){ slideIndex = 1;}
 
 
-    for(i = 0; i < slides.length; i++){
-        slides[i].style.display = "none";
+    for(index = 0; index < slides.length; index++){
+        slides[index].style.display = "none";
     }
 
-    slides[slideIndex - 1].style.display = "block";
-    captionText.innerHTML = slides[slideIndex-1].getElementsByTagName("img")[0].alt;
+    slides[slideIndex - 1].style.display = "flex";
 }
