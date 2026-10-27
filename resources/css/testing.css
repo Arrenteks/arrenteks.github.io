@@ -1,0 +1,251 @@
+/*This CSS is for testing stuff, before I build my whole portfolio around it*/
+
+
+/*Projects*/
+/*Flipping Cards*/
+.flip-card{
+    width: 10cm;
+    height: 12cm;
+    margin: 1rem;
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.flip-card-inner{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner{
+    transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  border-radius: 0.5rem;
+}
+
+.flip-card-front{
+    background:wheat;
+    border: 1px solid #e5e7eb;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.flip-card-back{
+    background: #8b5cf6;
+    color: white;
+    transform: rotateY(180deg);
+    flex-direction: column;
+    padding: 4%;
+}
+
+.flip-card-back-description{
+    margin-top: auto;
+}
+
+
+
+.flip-card-back-description .flip-card-tag-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.flip-card-tag{
+    border: .3vh solid #bbb;
+    padding: 2%;
+    margin: 0 1% 1% 1%;
+    border-radius: .5vw;
+}
+
+.flip-card-back-description i{
+    margin-right: .1cm;
+}
+
+.flip-card-back-icon{
+    margin-top: .1cm;
+}
+
+/*flipping cards*/
+
+.holo-card-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.holo-card{
+    width: 200px;
+    height: 300px;
+    cursor:pointer;
+    background: #111;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    transition: all 0.5s ease;
+}
+
+.holo-card h2{
+        color: #0ff;
+        font-size: 2rem;
+        position: relative;
+        z-index: 2;
+    }
+
+.holo-card::before{
+        content: "";
+        position:absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(
+            0deg,
+            transparent,
+            transparent 30%,
+            rgba(0, 255, 255, 0.3)
+        );
+        transform: rotate(-45deg);
+        transition: all 0.5s ease;
+        opacity: 0;
+    }
+
+.holo-card:hover{
+        transform: scale(1.05);
+        box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+    }
+
+.holo-card:hover::before{
+        opacity: 1;
+        transform: rotate(-45deg) translateY(100%);
+    }
+
+/*holo cards*/
+
+/*curtain-cards*/
+.curtain-card{
+    cursor: pointer;
+    position: relative;
+    width: 24rem;
+    height: 29rem;
+    margin: 0 auto;
+    background: #fff;
+    box-shadow: 0 15px 60px rgba(0, 0, 0, .5);
+    border-radius: 15px;
+    margin: 50px 0 50px 0;
+
+    .face{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+    }
+
+    .face.face-one{
+        box-sizing: border-box;
+        padding: 20px;
+
+        h2{
+            margin: 0;
+            padding: 0;
+            transform: translate(30%, 75%);
+        }
+
+        .content{
+            font-size: 1.2em;
+            margin: 0;
+            padding: 0 0 1em 0;
+            
+            img{
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+    }
+
+    .face.face-two{
+        transition: .5s;
+        border-radius: 15px;
+        height: 25%;
+        display: flex;
+        color: #fff;
+        flex-direction: column;
+        background-color: rgba(7, 80, 29, 0.5);
+        backdrop-filter: blur(5px);
+        
+
+        .icons{
+            transition: .5s;
+            transform: scale(0);
+            margin: auto 0 0 0;
+
+            .divider{
+                width: 90%;
+                background-color: #fff;
+            }
+        }
+
+        ul{
+            list-style: none;
+            padding: 1.5rem;
+        }
+    }
+
+    &:hover .face.face-two{
+        height: 75%;
+        border-radius: 0 0 15px 15px;
+    }
+
+    .face-two::before{
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 50%;
+        height: 100%;
+        border-radius: 15px 0 0 15px;
+    }
+
+    .face.face-two h2{
+        margin: 0;
+        padding: 0;
+        font-size: 2em;
+        transition: .5s;
+        text-shadow: 0 2px 5px rgba(0, 0, 0, .2);
+    }
+
+    &:hover .face.face-two{
+        
+        h2{
+            font-size: 2em;
+            transform: translate(5%, 5%);
+        }
+
+        .icons{
+            transform: scale(1);
+        }
+    }
+}
+
+/* Project Page(s)*/
+
+.voices-container{
+    background-color: green;
+    min-height: 15%;
+}
+
