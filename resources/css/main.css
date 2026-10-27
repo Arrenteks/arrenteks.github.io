@@ -30,6 +30,10 @@ a{
         color: #0a66c2;
     }
 
+    .bi-envelope:hover{
+        color: #ea4335
+    }
+
     color: gray;
 }
 
@@ -461,7 +465,7 @@ hr.divider{
     .container{
         display: flex;
         flex-wrap: wrap;
-        justify-content: left;
+        justify-content: center;
     }
 }
 
@@ -591,6 +595,7 @@ hr.divider{
     background-color: #fff;
     margin: auto;
     padding: 2rem;
+    max-width: 90%;
     
     h1, h2, h3{
         margin-bottom: 1rem;
@@ -712,12 +717,15 @@ hr.divider{
     position: fixed;
     bottom: 0;
     right: .5rem;
-    padding-right: 1rem;
-    font-size: 2.5rem;
+    font-size: 2.25rem;
 
     ul{
         list-style: none;
         padding: 1rem;
+        
+        li{
+            padding-top: .5rem;
+        }
     }
 
     a:hover{
