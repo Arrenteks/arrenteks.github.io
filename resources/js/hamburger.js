@@ -1,14 +1,17 @@
 isOpen = false;
 
-function openNav(x){
-    toggleHamburger(x);
-    document.getElementById("myNav").style.height = "100%";
+function openNav(){
+    document.getElementById("myNav").style.height = "100%"
 }
 
-function closeNav(x){
-    toggleHamburger(x);
+function closeNav(){
+    document.getElementById("myNav").style.height = "0%"
 }
 
 function toggleHamburger(x){
+    isOpen = !isOpen;
     x.classList.toggle("change");
+
+    if(isOpen) openNav()
+    else closeNav();
 }
