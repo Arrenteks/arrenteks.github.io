@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./resources/css/reset.css">
     <link rel="stylesheet" href="./resources/css/main.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.2/font/bootstrap-icons.min.css">
@@ -10,6 +11,20 @@
   <header>
   </header>
   <body>
+    <div onclick="openNav(this)">
+      <div id="hamburger">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </div>      
+      <div id="myNav" class="overlay">
+        <div class="overlay-content">
+          <a href="./resources/html/about_me.html">About Me</a>
+          <a href="./resources/html/games.html">Games</a>
+          <a href="./resources/html/projects.html">Projects</a>
+        </div>
+      </div>
+    </div>
     <main>
       <div class="wrapper">
         <div class="welcome">
@@ -18,7 +33,7 @@
             <p>
               Video Games have enchanted me at the age of three - now I want to give back to an industry so dear to my heart.
               As a <span>Gameplay Programmer</span> and <span>Software Architect</span>, currently studying Media and Game Conception, my passion lies with creative problem solving,
-              collaborative work and bringing ideas to live, all things Games strive at.<br> Games have the ability to make people feel like heroes, villains or 
+              collaborative work and bringing ideas to live, all things Games strive at.<br><br> Games have the ability to make people feel like heroes, villains or 
               just like themselves. And I am here to create these interactive experience with an ever-burning flame in my heart!
             </p>
           <div class="navigation">
@@ -40,4 +55,5 @@
     <footer></footer>
   </body>
   <script src="/resources/js/email.js"></script>
+  <script src="/resources/js/hamburger.js"></script>
 </html>

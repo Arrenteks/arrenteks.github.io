@@ -14,7 +14,14 @@
 
     /*speeds*/
     --defaultSpeed: .3s; /*Default Speed for Animations and Transitions used on Page*/
+
 }
+
+h1{
+    font-size: 35px;
+}
+
+
 
 /*Stretch html, body and main over the whole screen*/
 html, body, main{
@@ -140,7 +147,7 @@ footer{
     align-items: center;
     justify-content: center;
     text-align: center;
-    max-width: 66%;
+    max-width: 75%;
 
     span{
         padding: .5rem;
@@ -148,13 +155,8 @@ footer{
         border-radius: .5rem;
     }
 
-    p{
-        padding: 0 5rem 0 5rem;
-        line-height: 2.5rem;
-    }
-
     .icons{
-        width: 20%;
+        min-width: 20%;
         display: flex;
         justify-content: space-between;
         
@@ -188,7 +190,6 @@ footer{
         h1{
         animation-name: welcomeHAnimation;
         animation-duration: 1.5s;
-        font-size: 2.5rem;
     }
 
         p{
@@ -262,6 +263,61 @@ footer{
         }
     }
 }
+
+/*Mobile Navigation*/
+#hamburger{
+    display: inline-block;
+    cursor: pointer;
+    position: absolute;
+}
+
+.overlay{
+    height: 0;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, .9);
+    overflow-x: hidden;
+    transition: .5s;
+
+    a{
+        padding: 8px;
+        text-decoration: none;
+        font-size: 36px;
+        color: #818181;
+        display: block;
+        transition: .3s;
+
+        &:hover &:focus{
+            color: #f1f1f1;
+        }
+    }
+}
+
+.bar1, .bar2, .bar3 {
+  width: 35px;
+  height: 5px;
+  background-color: #333;
+  margin: 6px 0;
+  transition: 0.4s;
+}
+
+/* Rotate first bar */
+.change .bar1 {
+  transform: translate(0, 11px) rotate(-45deg);
+}
+
+/* Fade out the second bar */
+.change .bar2 {opacity: 0;}
+
+/* Rotate last bar */
+.change .bar3 {
+  transform: translate(0, -11px) rotate(45deg);
+}
+
+
 
 /*Navigation*/
 @keyframes navAnimation{
@@ -733,4 +789,55 @@ hr.divider{
         font-size: 36pt;
     }
 }
+
+@media (min-width: 1200px){
+    h1{
+        font-size: 50px;
+    }
+
+    p{
+        font-size: 20px;
+    }
+
+    .welcome{
+        p{
+            padding: 0 5rem 0 5rem;
+            line-height: 2.5rem;
+        }
+    }    
+}
+
+
+
+@media(width <= 600px) {
+    h1{
+        font-size: 40px;
+    }
+
+    p{
+        font-size: 18px;
+    }
+
+    .welcome{
+        max-width: 95%;
+
+        .navigation{
+            display: none;
+        }
+
+        .icons{
+            margin-top: 1rem;
+            min-width: 50%;
+        }
+
+        p{
+            font-size: 14px;
+            line-height: 2em;
+        }
+    
+    }
+
+    
+}
+
 
