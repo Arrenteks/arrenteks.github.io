@@ -51,8 +51,7 @@ body {
     --grid-gap: 12px; /* size of the minor squares (line gaps) */
     --grid-opacity: 0.15; /* opacity of crosses */
     
-    --grid-border: 16px;
-    
+
     --grid-light: hsl(var(--grid-hue), 50%, 92%);
     --grid-dark: hsl(var(--grid-hue), 20%, 18%);
     --grid-bg: light-dark( var(--grid-light), var(--grid-dark) );
@@ -120,7 +119,6 @@ body {
 footer{
     display: flex;
     flex-direction: row;
-    margin-top: 1rem;
 
     a{
         margin-left: auto;
@@ -269,7 +267,10 @@ footer{
     display: inline-block;
     cursor: pointer;
     position: absolute;
+    top: 10px;
+    left: 12.5px;
     z-index: 5;
+    padding: 5px;
 }
 
 .overlay{
@@ -284,7 +285,7 @@ footer{
     transition: .5s;
 
     a{
-        padding: 8px;
+        padding: 8px 8px 8px 16px;
         text-decoration: none;
         font-size: 36px;
         color: #818181;
